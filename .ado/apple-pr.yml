@@ -33,6 +33,7 @@ jobs:
     steps:
       - template: templates/apple-job-react-native.yml
         parameters:
+          packager_platform: $(packager_platform)
           xcode_sdk: $(xcode_sdk)
           xcode_configuration: $(xcode_configuration)
           xcode_scheme: $(xcode_scheme)
