@@ -36,6 +36,8 @@ steps:
 
   - script: |
       curl --retry-connrefused --connect-timeout 5 --max-time 10 --retry 10 --retry-delay 5 --retry-max-time 120 "http://localhost:8081/IntegrationTests/IntegrationTestsApp.bundle?platform=$PACKAGER_PLATFORM&dev=true" -o /dev/null
+    env:
+      PACKAGER_PLATFORM: ${{ parameters.packager_platform }}
     displayName: 'curl the packager'
 
   - template: apple-xcode-build.yml
