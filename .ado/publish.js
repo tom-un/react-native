@@ -128,7 +128,6 @@ function doPublish() {
     );
   };
 
-
   const createReleaseRequestBody = {
     tag_name: `v${releaseVersion}`,
     target_commitish: tempPublishBranch,
@@ -146,7 +145,8 @@ function doPublish() {
         "User-Agent": userAgent,
         Authorization: authHeader
       },
-      form: createReleaseRequestBody
+      json: true,
+      body: createReleaseRequestBody
     },
     function(err, res, body) {
       if (err) {
@@ -155,9 +155,7 @@ function doPublish() {
       }
 
       console.log("Created GitHub Release: " + JSON.stringify(body, null, 2));
-      var releaseId = JSON.parse(body).id;
-      uploadReleaseAssetUrl = assetUpdateUrl.replace(/{id}/, releaseId);
-
+      uploadReleaseAssetUrl = assetUpdateUrl.replace(/{id}/, body.id);
       uploadTarBallToRelease();
     }
   );
