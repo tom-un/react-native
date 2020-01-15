@@ -695,6 +695,13 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
   // If we've gained focus, notify listeners
   if (self.onFocus != nil ) {
     self.onFocus(nil);
+  } else {
+    if ([self.superview isKindOfClass:[RCTView class]]) {
+      RCTView *reactSuperView = (RCTView *)(self.superview);
+      if (reactSuperView.onFocus != nil) {
+        reactSuperView.onFocus(nil);
+      }
+    }
   }
   return YES;
 }
