@@ -14,10 +14,8 @@ import RCTActionSheetManager from './NativeActionSheetManager';
 
 const invariant = require('invariant');
 const processColor = require('../StyleSheet/processColor');
-import type {
-  ColorValue,
-  ProcessedColorValue,
-} from '../StyleSheet/StyleSheetTypes';
+import type {ColorValue} from '../StyleSheet/StyleSheetTypes';
+import type {ProcessedColorValue} from '../StyleSheet/processColor';
 
 /**
  * Display action sheets and share sheets on iOS.
@@ -69,10 +67,15 @@ const ActionSheetIOS = {
       destructiveButtonIndices = [destructiveButtonIndex];
     }
 
+    const processedTintColor = processColor(tintColor);
+    invariant(
+      processedTintColor == null || typeof processedTintColor === 'number',
+      'Unexpected color given for ActionSheetIOS.showActionSheetWithOptions tintColor',
+    );
     RCTActionSheetManager.showActionSheetWithOptions(
       {
         ...remainingOptions,
-        tintColor: processColor(tintColor),
+        tintColor: processedTintColor,
         destructiveButtonIndices,
       },
       callback,

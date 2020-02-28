@@ -12,7 +12,8 @@
 
 'use strict';
 
-import type {ColorValue, ProcessedColorValue} from './ColorValueTypes';
+import type {ColorValue} from './StyleSheetTypes';
+import type {ProcessedColorValue} from './processColor';
 
 function normalizeColor(
   color: ?(ColorValue | ProcessedColorValue),
@@ -27,13 +28,13 @@ function normalizeColor(
     return null;
   }
 
-  if (typeof color === 'object' && color !== null) {
-    const normalizeColorObject = require('./NativeColorValueTypes')
+  if (typeof color === 'object' && color != null) {
+    const normalizeColorObject = require('./PlatformColorValueTypes')
       .normalizeColorObject;
 
     const normalizedColorObj = normalizeColorObject(color);
 
-    if (normalizedColorObj !== null) {
+    if (normalizedColorObj != null) {
       return color;
     }
   }

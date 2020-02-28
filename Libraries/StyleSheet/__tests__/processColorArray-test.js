@@ -13,9 +13,11 @@
 const {OS} = require('../../Utilities/Platform');
 const processColorArray = require('../processColorArray');
 
-const PlatformColorIOS = require('../NativeColorValueTypes.ios').PlatformColor;
-const IOSDynamicColor = require('../NativeColorValueTypes.ios').IOSDynamicColor;
-const PlatformColorAndroid = require('../NativeColorValueTypes.android')
+const PlatformColorIOS = require('../PlatformColorValueTypes.ios')
+  .PlatformColor;
+const DynamicColorIOS = require('../PlatformColorValueTypesIOS.ios')
+  .DynamicColorIOS;
+const PlatformColorAndroid = require('../PlatformColorValueTypes.android')
   .PlatformColor;
 
 const platformSpecific =
@@ -79,8 +81,8 @@ describe('processColorArray', () => {
 
       it('should process iOS Dynamic colors', () => {
         const colorFromArray = processColorArray([
-          IOSDynamicColor({light: 'black', dark: 'white'}),
-          IOSDynamicColor({light: 'white', dark: 'black'}),
+          DynamicColorIOS({light: 'black', dark: 'white'}),
+          DynamicColorIOS({light: 'white', dark: 'black'}),
         ]);
         const expectedColorValueArray = [
           {dynamic: {light: 0xff000000, dark: 0xffffffff}},
