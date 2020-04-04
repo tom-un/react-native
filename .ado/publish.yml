@@ -64,23 +64,25 @@ jobs:
         persistCredentials: true # set to 'true' to leave the OAuth token in the Git config after the initial fetch
 
       - task: CmdLine@2
-        displayName: npm install
+        displayName: yarn install
         inputs:
           script: |
             cd packages/react-native-macos-init
-            npm install
+            yarn install
 
       - task: CmdLine@2
-        displayName: Bump package version
+        displayName: yarn build
         inputs:
-          script: node .ado/bumpFileVersions.js
+          script: |
+            cd packages/react-native-macos-init
+            yarn build
 
-      - task: Npm@1
+      - task: CmdLine@2
         displayName: "Publish react-native-macos-init to npmjs.org"
         inputs:
-          command: 'publish'
-          workingDir: 'packages/react-native-macos-init'
-          publishEndpoint: 'npmjs'
+          script: |
+            cd packages/react-native-macos-init
+            npx --no-install beachball publish --branch origin/$(Build.SourceBranchName) -n $(npmAuthToken) -yes -m "applying package updates ***NO_CI***" --access public
 
   - job: RNGithubOfficePublish
     displayName: React-Native GitHub Publish to Office
