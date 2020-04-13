@@ -51,6 +51,7 @@ local.properties
 *.iml
 /android/
 /ReactAndroid/packages/
+.settings/
 
 # Node
 node_modules
