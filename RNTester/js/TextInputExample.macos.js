@@ -1,5 +1,5 @@
 /**
- * Copyright (c) Facebook, Inc. and its affiliates.
+ * Copyright (c) 2015-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
@@ -12,18 +12,10 @@
 
 'use strict';
 
-const React = require('react');
-const {
-  Button,
-  // InputAccessoryView, not supported on macOS
-  Text,
-  TextInput,
-  View,
-  StyleSheet,
-  Slider,
-  Switch,
-  Alert,
-} = require('react-native');
+// const InputAccessoryView = require('InputAccessoryView'); // InputAccessoryView not supported on macOS
+var React = require('react');
+var ReactNative = require('react-native');
+var {Text, TextInput, View, StyleSheet, Slider, Switch} = ReactNative;
 
 class WithLabel extends React.Component<$FlowFixMeProps> {
   render() {
@@ -80,7 +72,7 @@ class TextEventsExample extends React.Component<{}, $FlowFixMeState> {
               'onSelectionChange range: ' +
                 event.nativeEvent.selection.start +
                 ',' +
-                (event.nativeEvent.selection.end || ''),
+                event.nativeEvent.selection.end,
             )
           }
           onKeyPress={event => {
@@ -100,51 +92,49 @@ class TextEventsExample extends React.Component<{}, $FlowFixMeState> {
   }
 }
 
-// InputAccessoryView not supported on macOS
-// class TextInputAccessoryViewExample extends React.Component<{}, *> {
-//   /* $FlowFixMe(>=0.85.0 site=react_native_ios_fb) This comment suppresses an
-//    * error found when Flow v0.85 was deployed. To see the error, delete this
-//    * comment and run Flow. */
-//   constructor(props) {
-//     super(props);
-//     this.state = {text: 'Placeholder Text'};
-//   }
+/* InputAccessoryView not supported on macOS
+class TextInputAccessoryViewExample extends React.Component<{}, *> {
+  constructor(props) {
+    super(props);
+    this.state = {text: 'Placeholder Text'};
+  }
 
-//   render() {
-//     const inputAccessoryViewID = 'inputAccessoryView1';
-//     return (
-//       <View>
-//         <TextInput
-//           style={styles.default}
-//           inputAccessoryViewID={inputAccessoryViewID}
-//           onChangeText={text => this.setState({text})}
-//           value={this.state.text}
-//         />
-//         <InputAccessoryView nativeID={inputAccessoryViewID}>
-//           <View style={{backgroundColor: 'white'}}>
-//             <Button
-//               onPress={() => this.setState({text: 'Placeholder Text'})}
-//               title="Reset Text"
-//             />
-//           </View>
-//         </InputAccessoryView>
-//       </View>
-//     );
-//   }
-// }
+  render() {
+    const inputAccessoryViewID = 'inputAccessoryView1';
+    return (
+      <View>
+        <TextInput
+          style={styles.default}
+          inputAccessoryViewID={inputAccessoryViewID}
+          onChangeText={text => this.setState({text})}
+          value={this.state.text}
+        />
+        <InputAccessoryView nativeID={inputAccessoryViewID}>
+          <View style={{backgroundColor: 'white'}}>
+            <Button
+              onPress={() => this.setState({text: 'Placeholder Text'})}
+              title="Reset Text"
+            />
+          </View>
+        </InputAccessoryView>
+      </View>
+    );
+  }
+}
+*/
 
 class RewriteExample extends React.Component<$FlowFixMeProps, any> {
-  /* $FlowFixMe(>=0.85.0 site=react_native_ios_fb) This comment suppresses an
-   * error found when Flow v0.85 was deployed. To see the error, delete this
-   * comment and run Flow. */
+  /* $FlowFixMe(>=0.85.0 site=react_native_fb) This comment suppresses an
+   * error found when Flow v0.85 was deployed. To see the error, delete
+   * this comment and run Flow. */
   constructor(props) {
     super(props);
     this.state = {text: ''};
   }
   render() {
-    const limit = 20;
-    const remainder = limit - this.state.text.length;
-    const remainderColor = remainder > 5 ? 'blue' : 'red';
+    var limit = 20;
+    var remainder = limit - this.state.text.length;
+    var remainderColor = remainder > 5 ? 'blue' : 'red';
     return (
       <View style={styles.rewriteContainer}>
         <TextInput
@@ -169,9 +159,9 @@ class RewriteExampleInvalidCharacters extends React.Component<
   $FlowFixMeProps,
   any,
 > {
-  /* $FlowFixMe(>=0.85.0 site=react_native_ios_fb) This comment suppresses an
-   * error found when Flow v0.85 was deployed. To see the error, delete this
-   * comment and run Flow. */
+  /* $FlowFixMe(>=0.85.0 site=react_native_fb) This comment suppresses an
+   * error found when Flow v0.85 was deployed. To see the error, delete
+   * this comment and run Flow. */
   constructor(props) {
     super(props);
     this.state = {text: ''};
@@ -193,9 +183,9 @@ class RewriteExampleInvalidCharacters extends React.Component<
 }
 
 class RewriteExampleKana extends React.Component<$FlowFixMeProps, any> {
-  /* $FlowFixMe(>=0.85.0 site=react_native_ios_fb) This comment suppresses an
-   * error found when Flow v0.85 was deployed. To see the error, delete this
-   * comment and run Flow. */
+  /* $FlowFixMe(>=0.85.0 site=react_native_fb) This comment suppresses an
+   * error found when Flow v0.85 was deployed. To see the error, delete
+   * this comment and run Flow. */
   constructor(props) {
     super(props);
     this.state = {text: ''};
@@ -217,16 +207,12 @@ class RewriteExampleKana extends React.Component<$FlowFixMeProps, any> {
 }
 
 class SecureEntryExample extends React.Component<$FlowFixMeProps, any> {
-  /* $FlowFixMe(>=0.85.0 site=react_native_ios_fb) This comment suppresses an
-   * error found when Flow v0.85 was deployed. To see the error, delete this
-   * comment and run Flow. */
+  /* $FlowFixMe(>=0.85.0 site=react_native_fb) This comment suppresses an
+   * error found when Flow v0.85 was deployed. To see the error, delete
+   * this comment and run Flow. */
   constructor(props) {
     super(props);
-    this.state = {
-      text: '',
-      password: '',
-      isSecureTextEntry: true,
-    };
+    this.state = {text: ''};
   }
   render() {
     return (
@@ -239,35 +225,15 @@ class SecureEntryExample extends React.Component<$FlowFixMeProps, any> {
           value={this.state.text}
         />
         <Text>Current text is: {this.state.text}</Text>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-          }}>
-          <TextInput
-            style={styles.default}
-            defaultValue="cde"
-            onChangeText={text => this.setState({password: text})}
-            secureTextEntry={this.state.isSecureTextEntry}
-            value={this.state.password}
-          />
-          <Switch
-            onValueChange={value => {
-              this.setState({isSecureTextEntry: value});
-            }}
-            style={{marginLeft: 4}}
-            value={this.state.isSecureTextEntry}
-          />
-        </View>
       </View>
     );
   }
 }
 
 class TokenizedTextExample extends React.Component<$FlowFixMeProps, any> {
-  /* $FlowFixMe(>=0.85.0 site=react_native_ios_fb) This comment suppresses an
-   * error found when Flow v0.85 was deployed. To see the error, delete this
-   * comment and run Flow. */
+  /* $FlowFixMe(>=0.85.0 site=react_native_fb) This comment suppresses an
+   * error found when Flow v0.85 was deployed. To see the error, delete
+   * this comment and run Flow. */
   constructor(props) {
     super(props);
     this.state = {text: 'Hello #World'};
@@ -408,7 +374,7 @@ class SelectionExample extends React.Component<
   }
 
   getRandomPosition() {
-    const length = this.state.value.length;
+    var length = this.state.value.length;
     return Math.round(Math.random() * length);
   }
 
@@ -418,7 +384,7 @@ class SelectionExample extends React.Component<
   }
 
   selectRandom() {
-    const positions = [this.getRandomPosition(), this.getRandomPosition()].sort(
+    var positions = [this.getRandomPosition(), this.getRandomPosition()].sort(
       (a, b) => a - b,
     );
     this.select(...positions);
@@ -433,7 +399,7 @@ class SelectionExample extends React.Component<
   }
 
   render() {
-    const length = this.state.value.length;
+    var length = this.state.value.length;
 
     return (
       <View>
@@ -488,7 +454,7 @@ class AutogrowingTextInputExample extends React.Component<
   }
 
   render() {
-    const {style, multiline, ...props} = this.props;
+    var {style, multiline, ...props} = this.props;
     return (
       <View>
         <Text>Width:</Text>
@@ -523,7 +489,10 @@ class AutogrowingTextInputExample extends React.Component<
   }
 }
 
-const styles = StyleSheet.create({
+var styles = StyleSheet.create({
+  page: {
+    paddingBottom: 300,
+  },
   default: {
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: '#0f0f0f',
@@ -540,11 +509,6 @@ const styles = StyleSheet.create({
     padding: 4,
     marginBottom: 4,
   },
-  multilinePlaceholderStyles: {
-    letterSpacing: 10,
-    lineHeight: 20,
-    textAlign: 'center',
-  },
   multilineExpandable: {
     height: 'auto',
     maxHeight: 100,
@@ -556,9 +520,12 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
     height: 60,
   },
-  singlelinePlaceholderStyles: {
-    letterSpacing: 10,
-    textAlign: 'center',
+  multilineChild: {
+    width: 50,
+    height: 40,
+    position: 'absolute',
+    right: 5,
+    backgroundColor: 'red',
   },
   eventLabel: {
     margin: 3,
@@ -629,7 +596,8 @@ exports.examples = [
     render: function() {
       return <TextInputAccessoryViewExample />;
     },
-  }, */
+  },
+  */
   {
     title: 'Auto-capitalize',
     render: function() {
@@ -695,7 +663,7 @@ exports.examples = [
   {
     title: 'Keyboard types',
     render: function() {
-      const keyboardTypes = [
+      var keyboardTypes = [
         'default',
         'ascii-capable',
         'numbers-and-punctuation',
@@ -709,7 +677,7 @@ exports.examples = [
         'web-search',
         'numeric',
       ];
-      const examples = keyboardTypes.map(type => {
+      var examples = keyboardTypes.map(type => {
         return (
           <WithLabel key={type} label={type}>
             <TextInput keyboardType={type} style={styles.default} />
@@ -722,8 +690,8 @@ exports.examples = [
   {
     title: 'Keyboard appearance',
     render: function() {
-      const keyboardAppearance = ['default', 'light', 'dark'];
-      const examples = keyboardAppearance.map(type => {
+      var keyboardAppearance = ['default', 'light', 'dark'];
+      var examples = keyboardAppearance.map(type => {
         return (
           <WithLabel key={type} label={type}>
             <TextInput keyboardAppearance={type} style={styles.default} />
@@ -736,7 +704,7 @@ exports.examples = [
   {
     title: 'Return key types',
     render: function() {
-      const returnKeyTypes = [
+      var returnKeyTypes = [
         'default',
         'go',
         'google',
@@ -749,7 +717,7 @@ exports.examples = [
         'done',
         'emergency-call',
       ];
-      const examples = returnKeyTypes.map(type => {
+      var examples = returnKeyTypes.map(type => {
         return (
           <WithLabel key={type} label={type}>
             <TextInput returnKeyType={type} style={styles.default} />
@@ -825,24 +793,25 @@ exports.examples = [
   {
     title: 'Clear button mode',
     render: function() {
-      const clearButtonModes = [
-        'never',
-        'while-editing',
-        'unless-editing',
-        'always',
-      ];
-      const examples = clearButtonModes.map(mode => {
-        return (
-          <WithLabel key={mode} label={mode}>
+      return (
+        <View>
+          <WithLabel label="never">
+            <TextInput style={styles.default} clearButtonMode="never" />
+          </WithLabel>
+          <WithLabel label="while editing">
+            <TextInput style={styles.default} clearButtonMode="while-editing" />
+          </WithLabel>
+          <WithLabel label="unless editing">
             <TextInput
               style={styles.default}
-              clearButtonMode={mode}
-              defaultValue={mode}
+              clearButtonMode="unless-editing"
             />
           </WithLabel>
-        );
-      });
-      return <View>{examples}</View>;
+          <WithLabel label="always">
+            <TextInput style={styles.default} clearButtonMode="always" />
+          </WithLabel>
+        </View>
+      );
     },
   },
   {
@@ -905,9 +874,7 @@ exports.examples = [
             returnKeyType="next"
             blurOnSubmit={true}
             multiline={true}
-            onSubmitEditing={event =>
-              Alert.alert('Alert', event.nativeEvent.text)
-            }
+            onSubmitEditing={event => alert(event.nativeEvent.text)}
           />
         </View>
       );
@@ -1122,43 +1089,6 @@ exports.examples = [
               maxLength={5}
               defaultValue="9402512345"
               style={styles.default}
-            />
-          </WithLabel>
-        </View>
-      );
-    },
-  },
-  {
-    title: 'Text Content Type',
-    render: function() {
-      return (
-        <View>
-          <WithLabel label="emailAddress">
-            <TextInput textContentType="emailAddress" style={styles.default} />
-          </WithLabel>
-          <WithLabel label="name">
-            <TextInput textContentType="name" style={styles.default} />
-          </WithLabel>
-        </View>
-      );
-    },
-  },
-  {
-    title: 'TextInput Placeholder Styles',
-    render: function() {
-      return (
-        <View>
-          <WithLabel label="letterSpacing: 10 lineHeight: 20 textAlign: 'center'">
-            <TextInput
-              placeholder="multiline text input"
-              multiline={true}
-              style={[styles.multiline, styles.multilinePlaceholderStyles]}
-            />
-          </WithLabel>
-          <WithLabel label="letterSpacing: 10 textAlign: 'center'">
-            <TextInput
-              placeholder="singleline"
-              style={[styles.default, styles.singlelinePlaceholderStyles]}
             />
           </WithLabel>
         </View>

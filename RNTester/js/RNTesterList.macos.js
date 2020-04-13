@@ -34,16 +34,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     supportsTVOS: false,
   },
   {
-    key: 'DatePickerIOSExample',
-    module: require('./DatePickerIOSExample'),
-    supportsTVOS: false,
-  },
-  // [TODO(OSS Candidate ISS#2710739)
-  {
     key: 'DatePickerMacOSExample',
     module: require('./DatePickerMacOSExample'),
     supportsTVOS: false,
-  }, // ]TODO(OSS Candidate ISS#2710739)
+  },
   {
     key: 'FlatListExample',
     module: require('./FlatListExample'),
@@ -60,11 +54,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     module: require('./ImageExample'),
     supportsTVOS: true,
   },
-  /* iOS Only Component {
+  {
     key: 'InputAccessoryViewExample',
     module: require('./InputAccessoryViewExample'),
     supportsTVOS: true,
-  }, */
+  },
   {
     key: 'KeyboardAvoidingViewExample',
     module: require('./KeyboardAvoidingViewExample'),
@@ -80,11 +74,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     module: require('./MaskedViewExample'),
     supportsTVOS: true,
   },
-  {
+  /*  {
     key: 'ModalExample',
     module: require('./ModalExample'),
     supportsTVOS: true,
-  },
+  }, */
   {
     key: 'MultiColumnExample',
     module: require('./MultiColumnExample'),
@@ -100,11 +94,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     module: require('./PickerExample'),
     supportsTVOS: false,
   },
-  {
+  /*  {
     key: 'PickerIOSExample',
     module: require('./PickerIOSExample'),
     supportsTVOS: false,
-  },
+  }, */
   {
     key: 'ProgressViewIOSExample',
     module: require('./ProgressViewIOSExample'),
@@ -145,11 +139,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     module: require('./SliderExample'),
     supportsTVOS: false,
   },
-  {
+  /*  {  Depends on Modal which is not implemented for macOS
     key: 'StatusBarExample',
     module: require('./StatusBarExample'),
     supportsTVOS: false,
-  },
+  }, */
   {
     key: 'SwitchExample',
     module: require('./SwitchExample'),
@@ -157,7 +151,7 @@ const ComponentExamples: Array<RNTesterExample> = [
   },
   {
     key: 'TextExample',
-    module: require('./TextExample.ios'),
+    module: require('./TextExample.macos'),
     supportsTVOS: true,
   },
   {
@@ -195,17 +189,17 @@ const APIExamples: Array<RNTesterExample> = [
   },
   {
     key: 'ActionSheetIOSExample',
-    module: require('./ActionSheetIOSExample'),
+    module: require('./ActionSheetMacOSExample'),
     supportsTVOS: true,
   },
   {
-    key: 'AlertIOSExample',
-    module: require('./AlertIOSExample'),
+    key: 'AnimatedExampleMacOS',
+    module: require('./AnimatedExampleMacOS'),
     supportsTVOS: true,
   },
   {
-    key: 'AnimatedExample',
-    module: require('./AnimatedExample'),
+    key: 'AlertExample',
+    module: require('./AlertExample').AlertExample,
     supportsTVOS: true,
   },
   {
@@ -214,8 +208,8 @@ const APIExamples: Array<RNTesterExample> = [
     supportsTVOS: true,
   },
   {
-    key: 'AppStateExample',
-    module: require('./AppStateExample'),
+    key: 'AlertMacOSExample',
+    module: require('./AlertMacOSExample'),
     supportsTVOS: true,
   },
   {
@@ -328,7 +322,7 @@ const APIExamples: Array<RNTesterExample> = [
     module: require('./TransformExample'),
     supportsTVOS: true,
   },
-  {
+  /*  {
     key: 'TurboModuleExample',
     module: require('./TurboModuleExample'),
     supportsTVOS: false,
@@ -342,17 +336,17 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'VibrationExample',
     module: require('./VibrationExample'),
     supportsTVOS: false,
-  },
+  }, */
   {
     key: 'WebSocketExample',
     module: require('./WebSocketExample'),
     supportsTVOS: true,
   },
-  {
+  /*  {
     key: 'XHRExample',
     module: require('./XHRExample'),
     supportsTVOS: true,
-  },
+  }, */
 ];
 
 const Modules = {};

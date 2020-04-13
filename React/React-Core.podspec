@@ -39,6 +39,7 @@ Pod::Spec.new do |s|
 # TODO(macOS GH#214)
                              "**/MacOS/*"
   s.osx.exclude_files      = "Modules/RCTRedBoxExtraDataViewController.{h,m}",
+                             "Modules/RCTStatusBarManager.*",
                              "UIUtils/*",
                              "Profiler/{RCTFPSGraph,RCTPerfMonitor}.*",
                              "Profiler/RCTProfileTrampoline-{arm,arm64,i386}.S",

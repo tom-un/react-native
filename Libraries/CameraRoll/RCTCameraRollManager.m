@@ -9,13 +9,11 @@
 
 #import <CoreLocation/CoreLocation.h>
 #import <Foundation/Foundation.h>
-#import <React/RCTUIKit.h> // TODO(macOS ISS#2323203)
+#import <UIKit/UIKit.h>
 #import <Photos/Photos.h>
 #import <dlfcn.h>
 #import <objc/runtime.h>
-#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 #import <MobileCoreServices/UTType.h>
-#endif // TODO(macOS ISS#2323203)
 
 #import <React/RCTBridge.h>
 #import <React/RCTConvert.h>
@@ -320,7 +318,6 @@ RCT_EXPORT_METHOD(deletePhotos:(NSArray<NSString *>*)assets
                   resolve:(RCTPromiseResolveBlock)resolve
                   reject:(RCTPromiseRejectBlock)reject)
 {
-#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   NSArray<NSURL *> *assets_ = [RCTConvert NSURLArray:assets];
   [[PHPhotoLibrary sharedPhotoLibrary] performChanges:^{
       PHFetchResult<PHAsset *> *fetched =
@@ -336,10 +333,6 @@ RCT_EXPORT_METHOD(deletePhotos:(NSArray<NSString *>*)assets
       }
     }
     ];
-#else // [TODO(macOS ISS#2323203)
-	NSError *error = RCTErrorWithMessage(@"Delete image not available on macOS");
-	reject(@"Couldn't delete", @"Couldn't delete assets", error);
-#endif // ]TODO(macOS ISS#2323203)
 }
 
 static void checkPhotoLibraryConfig()
