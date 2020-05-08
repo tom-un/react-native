@@ -10,7 +10,6 @@
 
 'use strict';
 
-import AlertMacOS from './AlertMacOS'; // TODO(macOS ISS#2323203)
 import Platform from '../Utilities/Platform';
 import NativeDialogManagerAndroid, {
   type DialogOptions,
@@ -46,10 +45,11 @@ class Alert {
     buttons?: Buttons,
     options?: Options,
   ): void {
-    if (Platform.OS === 'ios') {
+    if (
+      Platform.OS === 'ios' ||
+      Platform.OS === 'macos' /* TODO(macOS ISS#2323203) */
+    ) {
       Alert.prompt(title, message, buttons, 'default');
-    } else if (Platform.OS === 'macos' /* TODO[(macOS ISS#2323203) */) {
-      AlertMacOS.prompt(title, message, buttons); // TODO](macOS ISS#2323203)
     } else if (Platform.OS === 'android') {
       if (!NativeDialogManagerAndroid) {
         return;
@@ -111,7 +111,10 @@ class Alert {
     defaultValue?: string,
     keyboardType?: string,
   ): void {
-    if (Platform.OS === 'ios') {
+    if (
+      Platform.OS === 'ios' ||
+      Platform.OS === 'macos' /* TODO(macOS ISS#2323203) */
+    ) {
       if (typeof type === 'function') {
         console.warn(
           'You passed a callback function as the "type" argument to Alert.prompt(). React Native is ' +
