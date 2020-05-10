@@ -356,10 +356,10 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'TransformExample',
     module: require('../examples/Transform/TransformExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
-      ios: 'TODO: crashes in test runner. ?',
-      macos: 'TODO: crashes in test runner. ?',
-    },
+      default: 'Reason: Stack overflow in jsi, upstream issue.',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'TurboModuleExample',
@@ -367,7 +367,7 @@ const APIExamples: Array<RNTesterExample> = [
     supportsTVOS: false,
     // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
-      default: 'TODO: requires TurboModule to be configured in host app.',
+      default: 'Reason: requires TurboModule to be configured in host app.',
     }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
