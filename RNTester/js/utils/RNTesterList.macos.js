@@ -54,6 +54,8 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'FocusEvents',
     module: require('../examples/FocusEventsExample/FocusEventsExample'),
     supportsTVOS: true,
+    skipTest:
+      'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
   }, // ]TODO(OSS Candidate ISS#2710739)
   {
     key: 'ImageExample',
@@ -98,6 +100,7 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'NewAppScreenExample',
     module: require('../examples/NewAppScreen/NewAppScreenExample'),
     supportsTVOS: false,
+    skipTest: 'TODO: Each child in list should have a unique "key" prop.',
   },
   {
     key: 'PickerExample',
@@ -169,12 +172,16 @@ const ComponentExamples: Array<RNTesterExample> = [
     /* $FlowFixMe allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
+    skipTest:
+      'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
   },
   {
     key: 'TextInputExample',
     /* $FlowFixMe allow macOS to share iOS test */
     module: require('../examples/TextInput/TextInputExample.ios'),
     supportsTVOS: true,
+    skipTest:
+      'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
   },
   {
     key: 'TouchableExample',
@@ -303,6 +310,7 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'RCTRootViewIOSExample',
     module: require('../examples/RCTRootView/RCTRootViewIOSExample'),
     supportsTVOS: true,
+    skipTest: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
   },
   {
     key: 'RTLExample',
@@ -328,11 +336,13 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'TransformExample',
     module: require('../examples/Transform/TransformExample'),
     supportsTVOS: true,
+    skipTest: 'TODO: crashes in test runner. ?',
   },
   {
     key: 'TurboModuleExample',
     module: require('../examples/TurboModule/TurboModuleExample'),
     supportsTVOS: false,
+    skipTest: 'TODO: requires NativeModule.',
   },
   {
     key: 'TVEventHandlerExample',

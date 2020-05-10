@@ -93,6 +93,7 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'NewAppScreenExample',
     module: require('../examples/NewAppScreen/NewAppScreenExample'),
     supportsTVOS: false,
+    skipTest: 'TODO: Each child in list should have a unique "key" prop.',
   },
   {
     key: 'PickerExample',
@@ -113,6 +114,7 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'RefreshControlExample',
     module: require('../examples/RefreshControl/RefreshControlExample'),
     supportsTVOS: false,
+    skipTest: 'TODO: requireNativeComponent: UpdatePropertiesExampleView',
   },
   {
     key: 'ScrollViewSimpleExample',
@@ -291,11 +293,14 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'PushNotificationIOSExample',
     module: require('../examples/PushNotificationIOS/PushNotificationIOSExample'),
     supportsTVOS: false,
+    skipTest:
+      'Reason: Requires remote notifications which are not supported in iOS Simulator.',
   },
   {
     key: 'RCTRootViewIOSExample',
     module: require('../examples/RCTRootView/RCTRootViewIOSExample'),
     supportsTVOS: true,
+    skipTest: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
   },
   {
     key: 'RTLExample',
@@ -321,11 +326,13 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'TransformExample',
     module: require('../examples/Transform/TransformExample'),
     supportsTVOS: true,
+    skipTest: 'TODO: crashes in test runner. ?',
   },
   {
     key: 'TurboModuleExample',
     module: require('../examples/TurboModule/TurboModuleExample'),
     supportsTVOS: false,
+    skipTest: 'TODO: requires NativeModule.',
   },
   {
     key: 'TVEventHandlerExample',

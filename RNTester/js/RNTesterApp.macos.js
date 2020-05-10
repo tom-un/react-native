@@ -204,11 +204,13 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
     // [TODO(macOS ISS#2323203)
     class LoadPageTest extends React.Component<{}> {
       render() {
-        return (
-          <SnapshotViewIOS>
-            <RNTesterExampleContainer module={ExampleModule} />
-          </SnapshotViewIOS>
-        );
+        let example;
+        if ('skipTest' in Example) {
+          example = null;
+        } else {
+          example = <RNTesterExampleContainer module={ExampleModule} />;
+        }
+        return <SnapshotViewIOS>{example}</SnapshotViewIOS>;
       }
     }
 
@@ -226,11 +228,9 @@ class EnumerateExamplePages extends React.Component<{}> {
     RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
       (Example: RNTesterExample) => {
         console.trace(Example.key);
-      }
+      },
     );
-    return (
-      <SnapshotViewIOS/>
-    );
+    return <SnapshotViewIOS />;
   }
 }
 

@@ -197,7 +197,44 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
         () => Snapshotter,
       );
     }
+
+    // [TODO(macOS ISS#2323203)
+    class LoadPageTest extends React.Component<{}> {
+      render() {
+        let example;
+        if ('skipTest' in Example) {
+          example = null;
+        } else {
+          example = <RNTesterExampleContainer module={ExampleModule} />;
+        }
+        return <SnapshotViewIOS>{example}</SnapshotViewIOS>;
+      }
+    }
+
+    AppRegistry.registerComponent(
+      'LoadPageTest_' + Example.key,
+      () => LoadPageTest,
+    );
+    // ]TODO(macOS ISS#2323203)
   },
 );
+
+// [TODO(macOS ISS#2323203)
+class EnumerateExamplePages extends React.Component<{}> {
+  render() {
+    RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
+      (Example: RNTesterExample) => {
+        console.trace(Example.key);
+      },
+    );
+    return <SnapshotViewIOS />;
+  }
+}
+
+AppRegistry.registerComponent(
+  'EnumerateExamplePages',
+  () => EnumerateExamplePages,
+);
+// ]TODO(macOS ISS#2323203)
 
 module.exports = RNTesterApp;

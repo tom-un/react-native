@@ -16,7 +16,7 @@
 
 #import <objc/runtime.h>
 
-@interface RNTesterLoadAppPages : XCTestCase
+@interface RNTesterLoadAllPages : XCTestCase
 {
   RCTTestRunner *_runner;
   NSString *_testName;
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation RNTesterLoadAppPages
+@implementation RNTesterLoadAllPages
 
 - (void)setUp
 {
