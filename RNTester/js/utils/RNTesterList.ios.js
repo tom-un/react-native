@@ -39,6 +39,12 @@ const ComponentExamples: Array<RNTesterExample> = [
     module: require('../examples/DatePicker/DatePickerIOSExample'),
     supportsTVOS: false,
   },
+  // [TODO(OSS Candidate ISS#2710739)
+  {
+    key: 'DatePickerMacOSExample',
+    module: require('../examples/DatePicker/DatePickerMacOSExample'),
+    supportsTVOS: false,
+  }, // ]TODO(OSS Candidate ISS#2710739)
   {
     key: 'FlatListExample',
     module: require('../examples/FlatList/FlatListExample'),
@@ -49,6 +55,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'FocusEvents',
     module: require('../examples/FocusEventsExample/FocusEventsExample'),
     supportsTVOS: true,
+    skipTest: {
+      macos:
+        'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
+    },
   }, // ]TODO(OSS Candidate ISS#2710739)
   {
     key: 'ImageExample',
@@ -63,6 +73,9 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'InputAccessoryViewExample',
     module: require('../examples/InputAccessoryView/InputAccessoryViewExample'),
     supportsTVOS: true,
+    skipTest: {
+      macos: 'Reason: InputAccessoryView only work on iOS.',
+    },
   },
   {
     key: 'KeyboardAvoidingViewExample',
@@ -93,7 +106,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'NewAppScreenExample',
     module: require('../examples/NewAppScreen/NewAppScreenExample'),
     supportsTVOS: false,
-    skipTest: 'TODO: Each child in list should have a unique "key" prop.',
+    skipTest: {
+      ios: 'TODO: Each child in list should have a unique "key" prop.',
+      macos: 'TODO: Each child in list should have a unique "key" prop.',
+    },
   },
   {
     key: 'PickerExample',
@@ -114,7 +130,9 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'RefreshControlExample',
     module: require('../examples/RefreshControl/RefreshControlExample'),
     supportsTVOS: false,
-    skipTest: 'TODO: requireNativeComponent: UpdatePropertiesExampleView',
+    skipTest: {
+      ios: 'TODO: requireNativeComponent: UpdatePropertiesExampleView',
+    },
   },
   {
     key: 'ScrollViewSimpleExample',
@@ -163,13 +181,23 @@ const ComponentExamples: Array<RNTesterExample> = [
   },
   {
     key: 'TextExample',
+    /* $FlowFixMe allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
+    skipTest: {
+      macos:
+        'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
+    },
   },
   {
     key: 'TextInputExample',
+    /* $FlowFixMe allow macOS to share iOS test */
     module: require('../examples/TextInput/TextInputExample.ios'),
     supportsTVOS: true,
+    skipTest: {
+      macos:
+        'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
+    },
   },
   {
     key: 'TouchableExample',
@@ -293,14 +321,19 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'PushNotificationIOSExample',
     module: require('../examples/PushNotificationIOS/PushNotificationIOSExample'),
     supportsTVOS: false,
-    skipTest:
-      'Reason: Requires remote notifications which are not supported in iOS Simulator.',
+    skipTest: {
+      ios:
+        'Reason: Requires remote notifications which are not supported in iOS Simulator.',
+    },
   },
   {
     key: 'RCTRootViewIOSExample',
     module: require('../examples/RCTRootView/RCTRootViewIOSExample'),
     supportsTVOS: true,
-    skipTest: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
+    skipTest: {
+      ios: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
+      macos: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
+    },
   },
   {
     key: 'RTLExample',
@@ -326,13 +359,19 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'TransformExample',
     module: require('../examples/Transform/TransformExample'),
     supportsTVOS: true,
-    skipTest: 'TODO: crashes in test runner. ?',
+    skipTest: {
+      ios: 'TODO: crashes in test runner. ?',
+      macos: 'TODO: crashes in test runner. ?',
+    },
   },
   {
     key: 'TurboModuleExample',
     module: require('../examples/TurboModule/TurboModuleExample'),
     supportsTVOS: false,
-    skipTest: 'TODO: requires NativeModule.',
+    skipTest: {
+      ios: 'TODO: requires NativeModule.',
+      macos: 'TODO: requires NativeModule.',
+    },
   },
   {
     key: 'TVEventHandlerExample',

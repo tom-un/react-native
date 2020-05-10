@@ -33,13 +33,20 @@
 }
 
 - (id)initWithName:(NSString *)testName {
+  // This method for dynamically adding tests borrowed from:
+  // https://github.com/google/google-toolbox-for-mac/blob/master/UnitTesting/GTMGoogleTestRunner.mm
+  // Xcode 6.1 started taking the testName from the selector instead of calling -name.
+  // So we will add selectors to this XCTestCase.
   Class cls = [self class];
   NSString *selectorTestName = testName;
   SEL selector = sel_registerName([selectorTestName UTF8String]);
   Method method = class_getInstanceMethod(cls, @selector(internalTestRunner));
   IMP implementation = method_getImplementation(method);
   const char *encoding = method_getTypeEncoding(method);
-  if (!class_addMethod(cls, selector, implementation, encoding)) {
+  // We may be called more than once for the same testName. Check before adding new method to avoid
+  // failure from adding multiple methods with the same name.
+  if (!class_getInstanceMethod(cls, selector) &&
+      !class_addMethod(cls, selector, implementation, encoding)) {
     // If we can't add a method, we should blow up here.
     [NSException raise:NSInternalInconsistencyException
                 format:@"Unable to add %@ to %@.", testName, cls];
@@ -77,7 +84,6 @@
 
   for (NSString *testName in testNames) {
     XCTestCase *testCase = [[self alloc] initWithName:testName];
-
     [suite addTest:testCase];
   }
   

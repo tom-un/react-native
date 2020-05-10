@@ -25,6 +25,7 @@ const {
   BackHandler,
   Button,
   Linking,
+  Platform, // TODO(macOS ISS#2323203)
   SafeAreaView,
   StyleSheet,
   Text,
@@ -143,7 +144,16 @@ const styles = StyleSheet.create({
   headerContainer: {
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: {semantic: 'separatorColor'}, // TODO(OSS Candidate ISS#2710739)
-    backgroundColor: {semantic: 'tertiarySystemBackgroundColor'}, // TODO(OSS Candidate ISS#2710739)
+    ...Platform.select({
+      // [TODO(macOS ISS#2323203)
+      ios: {
+        backgroundColor: {semantic: 'tertiarySystemBackgroundColor'},
+      },
+      macos: {
+        backgroundColor: {semantic: 'windowBackgroundColor'},
+      },
+    }),
+    // ]TODO(macOS ISS#2323203)
   },
   header: {
     height: 40,
@@ -201,13 +211,11 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
     // [TODO(macOS ISS#2323203)
     class LoadPageTest extends React.Component<{}> {
       render() {
-        let example;
-        if ('skipTest' in Example) {
-          example = null;
-        } else {
-          example = <RNTesterExampleContainer module={ExampleModule} />;
-        }
-        return <SnapshotViewIOS>{example}</SnapshotViewIOS>;
+        return (
+          <SnapshotViewIOS>
+            <RNTesterExampleContainer module={ExampleModule} />
+          </SnapshotViewIOS>
+        );
       }
     }
 
@@ -224,7 +232,13 @@ class EnumerateExamplePages extends React.Component<{}> {
   render() {
     RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
       (Example: RNTesterExample) => {
-        console.trace(Example.key);
+        let skipTest = false;
+        if ('skipTest' in Example) {
+          skipTest = (Platform.OS in Example.skipTest);
+        }
+        if (!skipTest) {
+          console.trace(Example.key);
+        }
       },
     );
     return <SnapshotViewIOS />;

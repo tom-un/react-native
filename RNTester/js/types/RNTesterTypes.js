@@ -44,4 +44,5 @@ export type RNTesterExample = $ReadOnly<{|
   key: string,
   module: RNTesterExampleModule,
   supportsTVOS?: boolean,
+  skipTest?: {[string]: string}, // TODO(macOS ISS#2323203)
 |}>;
