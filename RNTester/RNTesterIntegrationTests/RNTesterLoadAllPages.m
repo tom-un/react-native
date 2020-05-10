@@ -6,7 +6,7 @@
  *
  */
 
-// TODO(macOS ISS#3536887)
+// TODO(OSS Candidate ISS#2710739)
 
 #import <React/RCTUIKit.h>
 #import <XCTest/XCTest.h>
@@ -62,7 +62,6 @@
 }
 
 + (XCTestSuite*)defaultTestSuite {
-
   RCTTestRunner *runner = RCTInitRunnerForApp(@"RNTester/js/RNTesterApp", nil, nil);
   runner.disableSnapshot = YES;
 

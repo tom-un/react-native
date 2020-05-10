@@ -54,7 +54,7 @@
  */
 @property (nonatomic, assign) BOOL recordMode;
 
-@property (nonatomic, assign) BOOL disableSnapshot; // TODO(macOS ISS#2323203)
+@property (nonatomic, assign) BOOL disableSnapshot; // TODO(OSS Candidate ISS#2710739)
 
 @property (nonatomic, assign, readwrite) BOOL useBundler;
 

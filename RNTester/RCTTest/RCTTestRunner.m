@@ -115,7 +115,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
   return _testController.recordMode;
 }
 
-// [TODO(macOS ISS#2323203)
+// [TODO(OSS Candidate ISS#2710739)
 - (void)setDisableSnapshot:(BOOL)disableSnapshot
 {
   _testController.disableSnapshot = disableSnapshot;
@@ -125,7 +125,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
 {
   return _testController.disableSnapshot;
 }
-// ]TODO(macOS ISS#2323203)
+// ]TODO(OSS Candidate ISS#2710739)
 
 - (void)setUseBundler:(BOOL)useBundler
 {

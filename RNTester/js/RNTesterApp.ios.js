@@ -25,7 +25,7 @@ const {
   BackHandler,
   Button,
   Linking,
-  Platform, // TODO(macOS ISS#2323203)
+  Platform, // TODO(OSS Candidate ISS#2710739)
   SafeAreaView,
   StyleSheet,
   Text,
@@ -208,7 +208,7 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
       );
     }
 
-    // [TODO(macOS ISS#2323203)
+    // [TODO(OSS Candidate ISS#2710739)
     class LoadPageTest extends React.Component<{}> {
       render() {
         return (
@@ -223,18 +223,19 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
       'LoadPageTest_' + Example.key,
       () => LoadPageTest,
     );
-    // ]TODO(macOS ISS#2323203)
+    // ]TODO(OSS Candidate ISS#2710739)
   },
 );
 
-// [TODO(macOS ISS#2323203)
+// [TODO(OSS Candidate ISS#2710739)
 class EnumerateExamplePages extends React.Component<{}> {
   render() {
     RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
       (Example: RNTesterExample) => {
         let skipTest = false;
         if ('skipTest' in Example) {
-          skipTest = (Platform.OS in Example.skipTest);
+          const platforms = Example.skipTest;
+          skipTest = platforms !== undefined && Platform.OS in platforms;
         }
         if (!skipTest) {
           console.trace(Example.key);
@@ -249,6 +250,6 @@ AppRegistry.registerComponent(
   'EnumerateExamplePages',
   () => EnumerateExamplePages,
 );
-// ]TODO(macOS ISS#2323203)
+// ]TODO(OSS Candidate ISS#2710739)
 
 module.exports = RNTesterApp;

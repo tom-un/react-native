@@ -73,9 +73,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'InputAccessoryViewExample',
     module: require('../examples/InputAccessoryView/InputAccessoryViewExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       macos: 'Reason: InputAccessoryView only work on iOS.',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'KeyboardAvoidingViewExample',
@@ -106,10 +107,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'NewAppScreenExample',
     module: require('../examples/NewAppScreen/NewAppScreenExample'),
     supportsTVOS: false,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       ios: 'TODO: Each child in list should have a unique "key" prop.',
       macos: 'TODO: Each child in list should have a unique "key" prop.',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'PickerExample',
@@ -130,9 +132,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'RefreshControlExample',
     module: require('../examples/RefreshControl/RefreshControlExample'),
     supportsTVOS: false,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       ios: 'TODO: requireNativeComponent: UpdatePropertiesExampleView',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'ScrollViewSimpleExample',
@@ -181,23 +184,25 @@ const ComponentExamples: Array<RNTesterExample> = [
   },
   {
     key: 'TextExample',
-    /* $FlowFixMe allow macOS to share iOS test */
+    /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       macos:
         'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'TextInputExample',
-    /* $FlowFixMe allow macOS to share iOS test */
+    /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/TextInput/TextInputExample.ios'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       macos:
         'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'TouchableExample',
@@ -321,19 +326,21 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'PushNotificationIOSExample',
     module: require('../examples/PushNotificationIOS/PushNotificationIOSExample'),
     supportsTVOS: false,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       ios:
         'Reason: Requires remote notifications which are not supported in iOS Simulator.',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'RCTRootViewIOSExample',
     module: require('../examples/RCTRootView/RCTRootViewIOSExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       ios: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
       macos: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'RTLExample',
@@ -368,10 +375,11 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'TurboModuleExample',
     module: require('../examples/TurboModule/TurboModuleExample'),
     supportsTVOS: false,
+    // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
       ios: 'TODO: requires NativeModule.',
       macos: 'TODO: requires NativeModule.',
-    },
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'TVEventHandlerExample',
