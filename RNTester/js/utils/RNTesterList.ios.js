@@ -127,10 +127,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'RefreshControlExample',
     module: require('../examples/RefreshControl/RefreshControlExample'),
     supportsTVOS: false,
-    // [TODO(OSS Candidate ISS#2710739)
-    skipTest: {
-      ios: 'TODO: requireNativeComponent: UpdatePropertiesExampleView',
-    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'ScrollViewSimpleExample',
@@ -333,8 +329,7 @@ const APIExamples: Array<RNTesterExample> = [
     supportsTVOS: true,
     // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
-      ios: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
-      macos: 'TODO: RCTPerformanceLogger.m:79] Unbalanced calls start/end',
+      default: 'Reason: requires native components and is convered by RCTRootViewIntegrationTests',
     }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
@@ -372,8 +367,7 @@ const APIExamples: Array<RNTesterExample> = [
     supportsTVOS: false,
     // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
-      ios: 'TODO: requires NativeModule.',
-      macos: 'TODO: requires NativeModule.',
+      default: 'TODO: requires TurboModule to be configured in host app.',
     }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
