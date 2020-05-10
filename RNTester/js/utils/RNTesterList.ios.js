@@ -69,10 +69,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'InputAccessoryViewExample',
     module: require('../examples/InputAccessoryView/InputAccessoryViewExample'),
     supportsTVOS: true,
-    // [TODO(macOS ISS#2323203)
-    skipTest: {
-      macos: 'Reason: InputAccessoryView only work on iOS.',
-    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'KeyboardAvoidingViewExample',
