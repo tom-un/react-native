@@ -94,6 +94,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'MultiColumnExample',
     module: require('../examples/MultiColumn/MultiColumnExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: High failure rate in CI loading image assets from bundler.',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'NewAppScreenExample',
@@ -144,6 +149,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'SectionListExample',
     module: require('../examples/SectionList/SectionListExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: High failure rate in CI loading image assets from bundler.',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'SegmentedControlIOSExample',
