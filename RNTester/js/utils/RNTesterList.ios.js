@@ -329,7 +329,8 @@ const APIExamples: Array<RNTesterExample> = [
     supportsTVOS: true,
     // [TODO(OSS Candidate ISS#2710739)
     skipTest: {
-      default: 'Reason: requires native components and is convered by RCTRootViewIntegrationTests',
+      default:
+        'Reason: requires native components and is convered by RCTRootViewIntegrationTests',
     }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {

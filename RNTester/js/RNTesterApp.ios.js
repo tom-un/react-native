@@ -235,7 +235,9 @@ class EnumerateExamplePages extends React.Component<{}> {
         let skipTest = false;
         if ('skipTest' in Example) {
           const platforms = Example.skipTest;
-          skipTest = platforms !== undefined && (Platform.OS in platforms || 'default' in platforms);
+          skipTest =
+            platforms !== undefined &&
+            (Platform.OS in platforms || 'default' in platforms);
         }
         if (!skipTest) {
           console.trace(Example.key);
