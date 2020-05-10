@@ -29,7 +29,6 @@
 - (void)setUp
 {
   _runner = RCTInitRunnerForApp(@"RNTester/js/RNTesterApp", nil, nil);
-  _runner.disableSnapshot = YES;
 }
 
 - (id)initWithName:(NSString *)testName {
@@ -63,7 +62,6 @@
 
 + (XCTestSuite*)defaultTestSuite {
   RCTTestRunner *runner = RCTInitRunnerForApp(@"RNTester/js/RNTesterApp", nil, nil);
-  runner.disableSnapshot = YES;
 
   __block NSMutableArray<NSString *> *testNames = [NSMutableArray new];
 

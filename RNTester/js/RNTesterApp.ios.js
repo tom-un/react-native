@@ -25,6 +25,7 @@ const {
   BackHandler,
   Button,
   Linking,
+  NativeModules, // TODO(OSS Candidate ISS#2710739)
   Platform, // TODO(OSS Candidate ISS#2710739)
   SafeAreaView,
   StyleSheet,
@@ -32,6 +33,8 @@ const {
   View,
   YellowBox,
 } = require('react-native');
+
+const {TestModule} = NativeModules; // TODO(OSS Candidate ISS#2710739)
 
 import type {RNTesterExample} from './types/RNTesterTypes';
 import type {RNTesterAction} from './utils/RNTesterActions';
@@ -211,11 +214,8 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
     // [TODO(OSS Candidate ISS#2710739)
     class LoadPageTest extends React.Component<{}> {
       render() {
-        return (
-          <SnapshotViewIOS>
-            <RNTesterExampleContainer module={ExampleModule} />
-          </SnapshotViewIOS>
-        );
+        TestModule.markTestPassed(true);
+        return <RNTesterExampleContainer module={ExampleModule} />;
       }
     }
 
@@ -244,7 +244,8 @@ class EnumerateExamplePages extends React.Component<{}> {
         }
       },
     );
-    return <SnapshotViewIOS />;
+    TestModule.markTestPassed(true);
+    return <View />;
   }
 }
 

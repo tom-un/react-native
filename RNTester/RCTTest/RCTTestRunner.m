@@ -115,18 +115,6 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
   return _testController.recordMode;
 }
 
-// [TODO(OSS Candidate ISS#2710739)
-- (void)setDisableSnapshot:(BOOL)disableSnapshot
-{
-  _testController.disableSnapshot = disableSnapshot;
-}
-
-- (BOOL)disableSnapshot
-{
-  return _testController.disableSnapshot;
-}
-// ]TODO(OSS Candidate ISS#2710739)
-
 - (void)setUseBundler:(BOOL)useBundler
 {
   _useBundler = useBundler;
