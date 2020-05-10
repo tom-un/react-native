@@ -55,10 +55,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'FocusEvents',
     module: require('../examples/FocusEventsExample/FocusEventsExample'),
     supportsTVOS: true,
-    skipTest: {
-      macos:
-        'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
-    },
   }, // ]TODO(OSS Candidate ISS#2710739)
   {
     key: 'ImageExample',
@@ -178,22 +174,12 @@ const ComponentExamples: Array<RNTesterExample> = [
     /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
-    // [TODO(macOS ISS#2323203)
-    skipTest: {
-      macos:
-        'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
-    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'TextInputExample',
     /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/TextInput/TextInputExample.ios'),
     supportsTVOS: true,
-    // [TODO(OSS Candidate ISS#2710739)
-    skipTest: {
-      macos:
-        'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
-    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'TouchableExample',
