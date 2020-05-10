@@ -49,7 +49,7 @@ exports.examples = [
       return (
         <View style={{flexDirection: 'row'}}>
           {Object.keys(Colors).map(key => (
-            <View
+            <View key={key /* TODO(OSS Candidate ISS#2710739): contribute this fix upstream */}
               style={{width: 50, height: 50, backgroundColor: Colors[key]}}
             />
           ))}

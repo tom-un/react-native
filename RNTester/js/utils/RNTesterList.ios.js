@@ -39,12 +39,12 @@ const ComponentExamples: Array<RNTesterExample> = [
     module: require('../examples/DatePicker/DatePickerIOSExample'),
     supportsTVOS: false,
   },
-  // [TODO(OSS Candidate ISS#2710739)
+  // [TODO(macOS ISS#2323203)
   {
     key: 'DatePickerMacOSExample',
     module: require('../examples/DatePicker/DatePickerMacOSExample'),
     supportsTVOS: false,
-  }, // ]TODO(OSS Candidate ISS#2710739)
+  }, // ]TODO(macOS ISS#2323203)
   {
     key: 'FlatListExample',
     module: require('../examples/FlatList/FlatListExample'),
@@ -73,10 +73,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'InputAccessoryViewExample',
     module: require('../examples/InputAccessoryView/InputAccessoryViewExample'),
     supportsTVOS: true,
-    // [TODO(OSS Candidate ISS#2710739)
+    // [TODO(macOS ISS#2323203)
     skipTest: {
       macos: 'Reason: InputAccessoryView only work on iOS.',
-    }, // ]TODO(OSS Candidate ISS#2710739)
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'KeyboardAvoidingViewExample',
@@ -107,11 +107,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'NewAppScreenExample',
     module: require('../examples/NewAppScreen/NewAppScreenExample'),
     supportsTVOS: false,
-    // [TODO(OSS Candidate ISS#2710739)
-    skipTest: {
-      ios: 'TODO: Each child in list should have a unique "key" prop.',
-      macos: 'TODO: Each child in list should have a unique "key" prop.',
-    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'PickerExample',
@@ -187,11 +182,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
-    // [TODO(OSS Candidate ISS#2710739)
+    // [TODO(macOS ISS#2323203)
     skipTest: {
       macos:
         'TODO: consistently hits -[NSBigMutableString replaceCharactersInRange:withString:]: nil argument',
-    }, // ]TODO(OSS Candidate ISS#2710739)
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'TextInputExample',
