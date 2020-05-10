@@ -115,6 +115,18 @@ RCT_NOT_IMPLEMENTED(- (instancetype)init)
   return _testController.recordMode;
 }
 
+// [TODO(macOS ISS#2323203)
+- (void)setDisableSnapshot:(BOOL)disableSnapshot
+{
+  _testController.disableSnapshot = disableSnapshot;
+}
+
+- (BOOL)disableSnapshot
+{
+  return _testController.disableSnapshot;
+}
+// ]TODO(macOS ISS#2323203)
+
 - (void)setUseBundler:(BOOL)useBundler
 {
   _useBundler = useBundler;

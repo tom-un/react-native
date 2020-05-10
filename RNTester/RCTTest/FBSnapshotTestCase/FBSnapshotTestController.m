@@ -287,6 +287,11 @@ typedef NS_ENUM(NSUInteger, FBTestSnapshotFileNameType) {
                    identifier:(NSString *)identifier
                         error:(NSError **)errorPtr
 {
+  // [TODO(macOS ISS#2323203)
+  if (self.disableSnapshot) {
+    return YES;
+  }
+  // ]TODO(macOS ISS#2323203)
   if (self.recordMode) {
     return [self _recordSnapshotOfView:view selector:selector identifier:identifier error:errorPtr];
   } else {
