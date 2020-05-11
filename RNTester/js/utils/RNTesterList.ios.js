@@ -74,6 +74,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'InputAccessoryViewExample',
     module: require('../examples/InputAccessoryView/InputAccessoryViewExample'),
     supportsTVOS: true,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: High failure rate in CI for mac: TODO: investigate macOS issue.  Failure is in loading a images local and internet.',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'KeyboardAvoidingViewExample',
@@ -134,6 +139,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'ScrollViewSimpleExample',
     module: require('../examples/ScrollView/ScrollViewSimpleExample'),
     supportsTVOS: true,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: High failure rate in CI for mac: TODO: investigate macOS issue.  No obvious reason in logs.',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'SafeAreaViewExample',
@@ -185,6 +195,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: High failure rate in CI for mac: TODO: investigate macOS issue.  No obvious reason in logs.',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'TextInputExample',
