@@ -64,6 +64,11 @@ const ComponentExamples: Array<RNTesterExample> = [
   {
     key: 'JSResponderHandlerExample',
     module: require('../examples/JSResponderHandlerExample/JSResponderHandlerExample'),
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: High failure rate in CI loading image assets from internet.',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'InputAccessoryViewExample',
