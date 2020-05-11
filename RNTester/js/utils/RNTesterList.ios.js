@@ -60,6 +60,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'ImageExample',
     module: require('../examples/Image/ImageExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: High failure rate in CI for iOS and macOS.  Logs show no obvious reason.',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'JSResponderHandlerExample',
@@ -84,6 +89,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'KeyboardAvoidingViewExample',
     module: require('../examples/KeyboardAvoidingView/KeyboardAvoidingViewExample'),
     supportsTVOS: false,
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: High failure rate in CI loading image assets from internet.',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'LayoutEventsExample',
