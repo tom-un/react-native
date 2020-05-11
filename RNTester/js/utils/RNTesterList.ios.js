@@ -55,6 +55,10 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'FocusEvents',
     module: require('../examples/FocusEventsExample/FocusEventsExample'),
     supportsTVOS: true,
+    skipTest: {
+      default:
+        'Reason: Intermittent failure: RedBox errors: Missing request token for request: http://localhost:8081/assets/RNTester/js/assets/like.png...',
+    },
   }, // ]TODO(OSS Candidate ISS#2710739)
   {
     key: 'ImageExample',
@@ -64,11 +68,21 @@ const ComponentExamples: Array<RNTesterExample> = [
   {
     key: 'JSResponderHandlerExample',
     module: require('../examples/JSResponderHandlerExample/JSResponderHandlerExample'),
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: Intermittent failure: Missing request token for request: http://localhost:***@2x.png...',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'InputAccessoryViewExample',
     module: require('../examples/InputAccessoryView/InputAccessoryViewExample'),
     supportsTVOS: true,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: Intermittent failure: Missing request token for request: https://facebook.github.io/react-native/img/opengraph.png',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'KeyboardAvoidingViewExample',
@@ -94,6 +108,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'MultiColumnExample',
     module: require('../examples/MultiColumn/MultiColumnExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: Intermittent failure: Terminating app due to uncaught exception: Application tried to present modally an active controller: Missing request token for request:  http://localhost:8081/assets/RNTester/js/assets/like.png...',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'NewAppScreenExample',
@@ -144,6 +163,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'SectionListExample',
     module: require('../examples/SectionList/SectionListExample'),
     supportsTVOS: true,
+    // [TODO(OSS Candidate ISS#2710739)
+    skipTest: {
+      default:
+        'Reason: Intermittent failure: Terminating app due to uncaught exception: Application tried to present modally an active controller: Missing request token for request:  http://localhost:8081/assets/RNTester/js/assets/like.png...',
+    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'SegmentedControlIOSExample',
@@ -170,6 +194,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     /* $FlowFixMe TODO(macOS ISS#2323203): allow macOS to share iOS test */
     module: require('../examples/Text/TextExample.ios'),
     supportsTVOS: true,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: Intermittent failure: crash deallocating NSTextStorage of a TextView: tracked by https://github.com/microsoft/react-native-macos/issues/357',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'TextInputExample',
@@ -319,6 +348,11 @@ const APIExamples: Array<RNTesterExample> = [
     key: 'RTLExample',
     module: require('../examples/RTL/RTLExample'),
     supportsTVOS: true,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: Intermittent failure: crash deallocating NSTextStorage of a TextView: tracked by https://github.com/microsoft/react-native-macos/issues/357',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'ShareExample',
