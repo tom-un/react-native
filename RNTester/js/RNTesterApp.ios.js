@@ -35,6 +35,7 @@ const {
 } = require('react-native');
 
 const {TestModule} = NativeModules; // TODO(OSS Candidate ISS#2710739)
+const requestAnimationFrame = require('fbjs/lib/requestAnimationFrame'); // TODO(OSS Candidate ISS#2710739)
 
 import type {RNTesterExample} from './types/RNTesterTypes';
 import type {RNTesterAction} from './utils/RNTesterActions';
@@ -213,8 +214,13 @@ RNTesterList.ComponentExamples.concat(RNTesterList.APIExamples).forEach(
 
     // [TODO(OSS Candidate ISS#2710739)
     class LoadPageTest extends React.Component<{}> {
+      componentDidMount() {
+        requestAnimationFrame(() => {
+          TestModule.markTestCompleted();
+        });
+      }
+
       render() {
-        TestModule.markTestPassed(true);
         return <RNTesterExampleContainer module={ExampleModule} />;
       }
     }
@@ -244,7 +250,7 @@ class EnumerateExamplePages extends React.Component<{}> {
         }
       },
     );
-    TestModule.markTestPassed(true);
+    TestModule.markTestCompleted();
     return <View />;
   }
 }
