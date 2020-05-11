@@ -88,6 +88,11 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'KeyboardAvoidingViewExample',
     module: require('../examples/KeyboardAvoidingView/KeyboardAvoidingViewExample'),
     supportsTVOS: false,
+    // [TODO(macOS ISS#2323203)
+    skipTest: {
+      macos:
+        'Reason: Intermittent failure: Missing request token for request: https://facebook.github.io/react-native/img/favicon.png',
+    }, // ]TODO(macOS ISS#2323203)
   },
   {
     key: 'LayoutEventsExample',
