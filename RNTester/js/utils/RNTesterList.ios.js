@@ -55,10 +55,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'FocusEvents',
     module: require('../examples/FocusEventsExample/FocusEventsExample'),
     supportsTVOS: true,
-    skipTest: {
-      default:
-        'Reason: Intermittent failure: RedBox errors: Missing request token for request: http://localhost:8081/assets/RNTester/js/assets/like.png...',
-    },
   }, // ]TODO(OSS Candidate ISS#2710739)
   {
     key: 'ImageExample',
@@ -113,11 +109,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'MultiColumnExample',
     module: require('../examples/MultiColumn/MultiColumnExample'),
     supportsTVOS: true,
-    // [TODO(OSS Candidate ISS#2710739)
-    skipTest: {
-      default:
-        'Reason: Intermittent failure: Terminating app due to uncaught exception: Application tried to present modally an active controller: Missing request token for request:  http://localhost:8081/assets/RNTester/js/assets/like.png...',
-    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'NewAppScreenExample',
@@ -168,11 +159,6 @@ const ComponentExamples: Array<RNTesterExample> = [
     key: 'SectionListExample',
     module: require('../examples/SectionList/SectionListExample'),
     supportsTVOS: true,
-    // [TODO(OSS Candidate ISS#2710739)
-    skipTest: {
-      default:
-        'Reason: Intermittent failure: Terminating app due to uncaught exception: Application tried to present modally an active controller: Missing request token for request:  http://localhost:8081/assets/RNTester/js/assets/like.png...',
-    }, // ]TODO(OSS Candidate ISS#2710739)
   },
   {
     key: 'SegmentedControlIOSExample',
