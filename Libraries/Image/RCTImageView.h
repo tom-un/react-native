@@ -32,15 +32,6 @@ typedef NS_ENUM(NSInteger, UIImageRenderingMode) {
 @property (nonatomic, assign) RCTResizeMode resizeMode;
 
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
-/**
- * macOS Properties
- */
-@property (nonatomic, copy) RCTDirectEventBlock onDoubleClick;
-@property (nonatomic, copy) RCTDirectEventBlock onClick;
-@property (nonatomic, copy) RCTDirectEventBlock onMouseEnter;
-@property (nonatomic, copy) RCTDirectEventBlock onMouseLeave;
-@property (nonatomic, copy) RCTDirectEventBlock onDragEnter;
-@property (nonatomic, copy) RCTDirectEventBlock onDragLeave;
-@property (nonatomic, copy) RCTDirectEventBlock onDrop;
+@property (nonatomic, strong) RCTUIColor *tintColor;
 #endif // ]TODO(macOS ISS#2323203)
 @end

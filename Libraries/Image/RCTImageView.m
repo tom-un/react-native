@@ -618,5 +618,13 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithFrame:(CGRect)frame)
 {
   [self reloadImage];
 }
+  
+- (void)setTintColor:(NSColor *)tintColor
+{
+  _tintColor = tintColor;
+  if (@available(macOS 10.14, *)) {
+    _imageView.contentTintColor = tintColor;
+  }
+}
 #endif // ]TODO(macOS ISS#2323203)
 @end
