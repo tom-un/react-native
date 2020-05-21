@@ -31,7 +31,10 @@ typedef NS_ENUM(NSInteger, UIImageRenderingMode) {
 @property (nonatomic, assign) CGFloat blurRadius;
 @property (nonatomic, assign) RCTResizeMode resizeMode;
 
+<<<<<<< HEAD
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
 @property (nonatomic, strong) RCTUIColor *tintColor;
 #endif // ]TODO(macOS ISS#2323203)
+=======
+>>>>>>> ms/master
 @end
