@@ -53,6 +53,8 @@ jobs:
 
       # When using npm custom instead of npm publish, we need to ensure that auth still happens.
       - task: npmAuthenticate@0
+        inputs:
+          workingFile: .ado/npmjs.npmrc
         condition: and(succeeded(), ne(variables['Build.SourceBranch'], 'refs/heads/master'))
 
       - task: Npm@1
