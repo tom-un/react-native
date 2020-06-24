@@ -579,6 +579,8 @@ export type ViewProps = $ReadOnly<{|
    */
   enableFocusRing?: ?boolean, // TODO(macOS ISS#2323203)
 
+  nextKeyViewID?: ?string, // TODO(macOS ISS#2323203)
+
   /**
    * Fired when an element is focused
    *

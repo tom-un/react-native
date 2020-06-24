@@ -383,6 +383,23 @@ RCT_CUSTOM_VIEW_PROPERTY(enableFocusRing, BOOL, RCTView)
   }
 }
 
+RCT_CUSTOM_VIEW_PROPERTY(nextKeyViewID, NSString, RCTView)
+{
+  __weak RCTViewManager *weakSelf = self;
+  [_bridge.uiManager rootViewForReactTag:view.reactTag withCompletion:^(NSView *rootView) {
+    RCTViewManager *strongSelf = weakSelf;
+    if (rootView) {
+      NSView *nextKeyView = [strongSelf->_bridge.uiManager viewForNativeID:json
+                                                               withRootTag:rootView.reactTag];
+      if (nextKeyView) {
+        NSView *targetView = [[view subviews] firstObject];
+        nextKeyView = [[nextKeyView subviews] firstObject];
+        [targetView setNextKeyView:nextKeyView];
+      }
+    }
+  }];
+}
+
 RCT_REMAP_VIEW_PROPERTY(tooltip, toolTip, NSString)
 
 RCT_CUSTOM_VIEW_PROPERTY(draggedTypes, NSArray<NSPasteboardType>*, RCTView)

@@ -77,6 +77,9 @@
 
 @implementation RCTUITextField {
   RCTBackedTextFieldDelegateAdapter *_textInputDelegateAdapter;
+
+  NSView *_nextKeyView;
+
 }
 
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
@@ -405,6 +408,17 @@ static RCTUIColor *defaultPlaceholderTextColor()
   if ([delegate respondsToSelector:@selector(textFieldDidChangeSelection:)]) {
     [delegate textFieldDidChangeSelection:self];
   }
+}
+
+- (void)setNextKeyView:(NSView *)nextKeyView {
+  _nextKeyView = nextKeyView;
+}
+
+- (NSView *)nextKeyView {
+  if (_nextKeyView) {
+    return _nextKeyView;
+  }
+  return [super nextKeyView];
 }
 
 - (BOOL)textView:(NSTextView *)aTextView shouldChangeTextInRange:(NSRange)aRange replacementString:(NSString *)aString

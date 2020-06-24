@@ -114,6 +114,8 @@ static NSString *RCTRecursiveAccessibilityLabel(RCTUIView *view) // TODO(macOS I
 #endif // ]TODO(macOS ISS#2323203)
   NSMutableDictionary<NSString *, NSDictionary *> *accessibilityActionsNameMap;
   NSMutableDictionary<NSString *, NSDictionary *> *accessibilityActionsLabelMap;
+
+  NSView *_nextKeyView;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -502,6 +504,17 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
                                                object:[[self enclosingScrollView] contentView]];
   }
   [super viewDidMoveToWindow];
+}
+
+- (void)setNextKeyView:(NSView *)nextKeyView {
+  _nextKeyView = nextKeyView;
+}
+
+- (NSView *)nextKeyView {
+  if (_nextKeyView) {
+    return _nextKeyView;
+  }
+  return [super nextKeyView];
 }
 
 - (void)viewBoundsChanged:(NSNotification*)__unused inNotif

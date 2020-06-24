@@ -186,6 +186,35 @@ class FocusEventExample extends React.Component<{}, State> {
   }
 }
 
+class FocusTrapExample extends React.Component<{}, {}> {
+  render() {
+    const nextKeyViewID = 'inputView4';
+    return (
+      <View>
+        <Text>Focus trap example.</Text>
+        <TextInput placeholder={'Focusable 1'} style={styles.textInput} />
+        <TextInput placeholder={'Focusable 2'} style={styles.textInput} />
+        <TextInput placeholder={'Focusable 3'} style={styles.textInput} />
+        <Text>Begin focus trap:</Text>
+        <TextInput
+          nativeID={nextKeyViewID}
+          placeholder={'Focusable 4'}
+          style={styles.textInput}
+        />
+        <TextInput placeholder={'Focusable 5'} style={styles.textInput} />
+        <TextInput
+          nextKeyViewID={nextKeyViewID}
+          placeholder={'Focusable 6'}
+          style={styles.textInput}
+        />
+        <Text>End focus trap:</Text>
+        <TextInput placeholder={'Focusable 7'} style={styles.textInput} />
+        <TextInput placeholder={'Focusable 8'} style={styles.textInput} />
+      </View>
+    );
+  }
+}
+
 var styles = StyleSheet.create({
   textInput: {
     ...Platform.select({
@@ -212,6 +241,12 @@ exports.examples = [
     title: 'FocusEventExample',
     render: function(): React.Element<any> {
       return <FocusEventExample />;
+    },
+  },
+  {
+    title: 'FocusTrapExample',
+    render: function(): React.Element<any> {
+      return <FocusTrapExample />;
     },
   },
 ];
