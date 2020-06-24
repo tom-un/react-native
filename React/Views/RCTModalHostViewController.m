@@ -13,7 +13,7 @@
 @implementation RCTModalHostViewController
 {
   CGRect _lastViewFrame;
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   UIStatusBarStyle _preferredStatusBarStyle;
   BOOL _preferredStatusBarHidden;
 #endif
@@ -25,7 +25,7 @@
     return nil;
   }
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   _preferredStatusBarStyle = [RCTSharedApplication() statusBarStyle];
   _preferredStatusBarHidden = [RCTSharedApplication() isStatusBarHidden];
 #endif
@@ -33,9 +33,15 @@
   return self;
 }
 
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 - (void)viewDidLayoutSubviews
 {
   [super viewDidLayoutSubviews];
+#else
+  - (void)viewDidLayout
+  {
+    [super viewDidLayout];
+#endif
 
   if (self.boundsDidChangeBlock && !CGRectEqualToRect(_lastViewFrame, self.view.frame)) {
     self.boundsDidChangeBlock(self.view.bounds);
@@ -43,7 +49,7 @@
   }
 }
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
   return _preferredStatusBarStyle;

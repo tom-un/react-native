@@ -70,7 +70,7 @@ Pod::Spec.new do |s|
                                 "React/Base/RCTKeyCommands.*",
                                 "React/Base/RCTTV*.*",
                                 "React/Base/RCTReloadCommand.*",
-                                "React/Views/{RCTModal*,RCTMasked*,RCTTV*,RCTRefreshControl*,RCTWrapperViewController}.*",
+                                "React/Views/{RCTMasked*,RCTTV*,RCTRefreshControl*,RCTWrapperViewController}.*",
                                 "React/Views/SafeAreaView/*"
     # ]TODO(macOS ISS#2323203)
 

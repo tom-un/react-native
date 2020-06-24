@@ -18,7 +18,7 @@
 
 RCT_ENUM_CONVERTER(UIModalPresentationStyle, (@{
   @"fullScreen": @(UIModalPresentationFullScreen),
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   @"pageSheet": @(UIModalPresentationPageSheet),
   @"formSheet": @(UIModalPresentationFormSheet),
 #endif
@@ -37,7 +37,11 @@ RCT_ENUM_CONVERTER(UIModalPresentationStyle, (@{
 {
   [super insertReactSubview:subview atIndex:atIndex];
   if ([subview isKindOfClass:[RCTShadowView class]]) {
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     ((RCTShadowView *)subview).size = RCTScreenSize();
+#else
+    // TODO: tomun
+#endif
   }
 }
 
@@ -54,7 +58,7 @@ RCT_ENUM_CONVERTER(UIModalPresentationStyle, (@{
 
 RCT_EXPORT_MODULE()
 
-- (UIView *)view
+- (RCTUIView *)view
 {
   RCTModalHostView *view = [[RCTModalHostView alloc] initWithBridge:self.bridge];
   view.delegate = self;
@@ -75,7 +79,11 @@ RCT_EXPORT_MODULE()
   if (_presentationBlock) {
     _presentationBlock([modalHostView reactViewController], viewController, animated, completionBlock);
   } else {
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     [[modalHostView reactViewController] presentViewController:viewController animated:animated completion:completionBlock];
+#else
+    // TODO: tomun
+#endif
   }
 }
 
@@ -89,7 +97,11 @@ RCT_EXPORT_MODULE()
   if (_dismissalBlock) {
     _dismissalBlock([modalHostView reactViewController], viewController, animated, completionBlock);
   } else {
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     [viewController.presentingViewController dismissViewControllerAnimated:animated completion:completionBlock];
+#else
+    // TODO: tomun
+#endif
   }
 }
 

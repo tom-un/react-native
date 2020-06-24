@@ -5,11 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import <UIKit/UIKit.h>
+#import <React/RCTUIKit.h>
 
 #import <React/RCTInvalidating.h>
 #import <React/RCTModalHostViewManager.h>
 #import <React/RCTView.h>
+
+#if TARGET_OS_OSX
+typedef NS_ENUM(NSInteger, UIModalPresentationStyle) {
+  UIModalPresentationFullScreen = 0,
+  UIModalPresentationOverFullScreen = 5,
+};
+#endif
 
 @class RCTBridge;
 @class RCTModalHostViewController;
@@ -17,7 +24,7 @@
 
 @protocol RCTModalHostViewInteractor;
 
-@interface RCTModalHostView : UIView <RCTInvalidating>
+@interface RCTModalHostView : RCTUIView <RCTInvalidating>
 
 @property (nonatomic, copy) NSString *animationType;
 @property (nonatomic, assign) UIModalPresentationStyle presentationStyle;

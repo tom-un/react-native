@@ -11,7 +11,10 @@
 
 @interface RCTConvert (RCTModalHostView)
 
+
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 + (UIModalPresentationStyle)UIModalPresentationStyle:(id)json;
+#endif
 
 @end
 

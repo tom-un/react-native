@@ -28,7 +28,7 @@ import type EmitterSubscription from '../vendor/emitter/EmitterSubscription';
 import RCTModalHostView from './RCTModalHostViewNativeComponent';
 
 const ModalEventEmitter =
-  Platform.OS === 'ios' && NativeModalManager != null
+  (Platform.OS === 'ios' || Platform.OS === 'macos') && NativeModalManager != null
     ? new NativeEventEmitter(NativeModalManager)
     : null;
 

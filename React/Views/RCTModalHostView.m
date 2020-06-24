@@ -7,7 +7,7 @@
 
 #import "RCTModalHostView.h"
 
-#import <UIKit/UIKit.h>
+#import <React/RCTUIKit.h>
 
 #import "RCTAssert.h"
 #import "RCTBridge.h"
@@ -26,13 +26,14 @@
   BOOL _isPresented;
   RCTModalHostViewController *_modalViewController;
   RCTTouchHandler *_touchHandler;
-  UIView *_reactSubview;
+  RCTPlatformView *_reactSubview;
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 #if TARGET_OS_TV
   UITapGestureRecognizer *_menuButtonGestureRecognizer;
 #else
   UIInterfaceOrientation _lastKnownOrientation;
 #endif
-
+#endif
 }
 
 RCT_NOT_IMPLEMENTED(- (instancetype)initWithFrame:(CGRect)frame)
@@ -43,7 +44,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
   if ((self = [super initWithFrame:CGRectZero])) {
     _bridge = bridge;
     _modalViewController = [RCTModalHostViewController new];
-    UIView *containerView = [UIView new];
+    RCTPlatformView *containerView = [RCTPlatformView new];
     containerView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     _modalViewController.view = containerView;
     _touchHandler = [[RCTTouchHandler alloc] initWithBridge:bridge];
@@ -88,10 +89,13 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
 {
   if (_reactSubview && _isPresented) {
     [_bridge.uiManager setSize:newBounds.size forView:_reactSubview];
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     [self notifyForOrientationChange];
+#endif
   }
 }
 
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 - (void)notifyForOrientationChange
 {
 #if !TARGET_OS_TV
@@ -113,8 +117,9 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
   _onOrientationChange(eventPayload);
 #endif
 }
+#endif
 
-- (void)insertReactSubview:(UIView *)subview atIndex:(NSInteger)atIndex
+- (void)insertReactSubview:(RCTUIView *)subview atIndex:(NSInteger)atIndex
 {
   RCTAssert(_reactSubview == nil, @"Modal view can only have one subview");
   [super insertReactSubview:subview atIndex:atIndex];
@@ -130,11 +135,15 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
   }
 #endif
 
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   [_modalViewController.view insertSubview:subview atIndex:0];
+#else
+  [(RCTUIView *)[_modalViewController view] insertSubview:subview atIndex:0];
+#endif
   _reactSubview = subview;
 }
 
-- (void)removeReactSubview:(UIView *)subview
+- (void)removeReactSubview:(RCTUIView *)subview
 {
   RCTAssert(subview == _reactSubview, @"Cannot remove view other than modal view");
   // Superclass (category) removes the `subview` from actual `superview`.
@@ -164,9 +173,15 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
   }
 }
 
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 - (void)didMoveToWindow
 {
   [super didMoveToWindow];
+#else
+- (void)viewDidMoveToWindow
+{
+  [super viewDidMoveToWindow];
+#endif
 
   // In the case where there is a LayoutAnimation, we will be reinserted into the view hierarchy but only for aesthetic purposes.
   // In such a case, we should NOT represent the <Modal>.
@@ -177,9 +192,10 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
   if (!_isPresented && self.window) {
     RCTAssert(self.reactViewController, @"Can't present modal view controller without a presenting view controller");
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     _modalViewController.supportedInterfaceOrientations = [self supportedOrientationsMask];
 #endif
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     if ([self.animationType isEqualToString:@"fade"]) {
       _modalViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     } else if ([self.animationType isEqualToString:@"slide"]) {
@@ -188,14 +204,21 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
     if (self.presentationStyle != UIModalPresentationNone) {
       _modalViewController.modalPresentationStyle = self.presentationStyle;
     }
+#endif
     [_delegate presentModalHostView:self withViewController:_modalViewController animated:[self hasAnimationType]];
     _isPresented = YES;
   }
 }
 
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 - (void)didMoveToSuperview
 {
   [super didMoveToSuperview];
+#else
+- (void)viewDidMoveToSuperview
+{
+  [super viewDidMoveToSuperview];
+#endif
 
   if (_isPresented && !self.superview) {
     [self dismissModalViewController];
@@ -211,7 +234,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
 
 - (BOOL)isTransparent
 {
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   return _modalViewController.modalPresentationStyle == UIModalPresentationOverFullScreen;
+#else
+  return YES;
+#endif
 }
 
 - (BOOL)hasAnimationType
@@ -225,10 +252,12 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:coder)
     return;
   }
 
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   _modalViewController.modalPresentationStyle = transparent ? UIModalPresentationOverFullScreen : UIModalPresentationFullScreen;
+#endif
 }
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 - (UIInterfaceOrientationMask)supportedOrientationsMask
 {
   if (_supportedOrientations.count == 0) {

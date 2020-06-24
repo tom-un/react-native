@@ -5,13 +5,13 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-#import <UIKit/UIKit.h>
+#import <React/RCTUIKit.h>
 
 @interface RCTModalHostViewController : UIViewController
 
 @property (nonatomic, copy) void (^boundsDidChangeBlock)(CGRect newBounds);
 
-#if !TARGET_OS_TV
+#if !TARGET_OS_TV && !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 @property (nonatomic, assign) UIInterfaceOrientationMask supportedInterfaceOrientations;
 #endif
 
