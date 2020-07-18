@@ -9,6 +9,7 @@
 
 #import "RCTAutoInsetsProtocol.h"
 #import "RCTBorderDrawing.h"
+#import "RCTComponentEvent.h" // TODO(OSS Candidate ISS#2710739)
 #import "RCTConvert.h"
 #import "RCTLog.h"
 #import "RCTRootContentView.h" // TODO(macOS ISS#2323203)
@@ -108,6 +109,7 @@ static NSString *RCTRecursiveAccessibilityLabel(RCTUIView *view) // TODO(macOS I
 @implementation RCTView
 {
   RCTUIColor *_backgroundColor; // TODO(OSS Candidate ISS#2710739)
+  RCTEventDispatcher *_eventDispatcher; // TODO(OSS Candidate ISS#2710739)
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
   NSTrackingArea *_trackingArea;
   BOOL _hasMouseOver;
@@ -115,6 +117,16 @@ static NSString *RCTRecursiveAccessibilityLabel(RCTUIView *view) // TODO(macOS I
   NSMutableDictionary<NSString *, NSDictionary *> *accessibilityActionsNameMap;
   NSMutableDictionary<NSString *, NSDictionary *> *accessibilityActionsLabelMap;
 }
+
+// [TODO(OSS Candidate ISS#2710739)
+- (instancetype)initWithEventDispatcher:(RCTEventDispatcher *)eventDispatcher
+{
+  if ((self = [self initWithFrame:CGRectZero])) {
+    _eventDispatcher = eventDispatcher;
+  }
+  return self;
+}
+// ]TODO(OSS Candidate ISS#2710739)
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -710,21 +722,26 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
   }
 
   // If we've gained focus, notify listeners
-  if (self.onFocus != nil ) {
-    self.onFocus(nil);
-  }
+  RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"focus"
+                                                             viewTag:self.reactTag
+                                                                body:@{}];
+  [_eventDispatcher sendEvent:event];
+
   return YES;
 }
+
 - (BOOL)resignFirstResponder
 {
   if (![super resignFirstResponder]) {
     return NO;
   }
 
-  // If we've gained focus, notify listeners
-  if (self.onBlur != nil ) {
-    self.onBlur(nil);
-  }
+  // If we've lost focus, notify listeners
+  RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"blur"
+                                                             viewTag:self.reactTag
+                                                                body:@{}];
+  [_eventDispatcher sendEvent:event];
+
   return YES;
 }
 
