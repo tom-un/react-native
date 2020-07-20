@@ -93,7 +93,7 @@ CGFloat UIImageGetScale(NSImage *image)
     return 0.0;
   }
   
-  RCTAssert(image.representations.count == 1, @"The scale can only be derived if the image has one representation.");
+// TODO: hit with animated GIFs: RCTAssert(image.representations.count == 1, @"The scale can only be derived if the image has one representation.");
 
   NSImageRep *imageRep = image.representations.firstObject;
   if (imageRep != nil) {

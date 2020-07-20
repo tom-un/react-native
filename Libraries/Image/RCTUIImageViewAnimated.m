@@ -7,6 +7,7 @@
 
 #import <React/RCTUIImageViewAnimated.h>
 #import <React/RCTWeakProxy.h>
+#import <React/RCTPlatformDisplayLink.h> // TODO(macOS ISS#2323203)
 
 #import <mach/mach.h>
 #import <objc/runtime.h>
@@ -45,9 +46,7 @@ static NSUInteger RCTDeviceFreeMemory() {
 @property (nonatomic, strong) NSOperationQueue *fetchQueue;
 @property (nonatomic, strong) dispatch_semaphore_t lock;
 @property (nonatomic, assign) CGFloat animatedImageScale;
-#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
-@property (nonatomic, strong) CADisplayLink *displayLink;
-#endif // TODO(macOS ISS#2323203)
+@property (nonatomic, strong) RCTPlatformDisplayLink *displayLink; // TODO(macOS ISS#2323203)
 @end
 
 @implementation RCTUIImageViewAnimated
@@ -56,9 +55,9 @@ static NSUInteger RCTDeviceFreeMemory() {
 {
   if (self = [super initWithFrame:frame]) {
     self.lock = dispatch_semaphore_create(1);
-    #if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didReceiveMemoryWarning:) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
-    #endif // TODO(macOS ISS#2323203)
+#endif // TODO(macOS ISS#2323203)
   }
   return self;
 }
@@ -89,9 +88,7 @@ static NSUInteger RCTDeviceFreeMemory() {
     return;
   }
 
-#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   [self stop];
-#endif // TODO(macOS ISS#2323203)
 
   [self resetAnimatedImage];
 
@@ -117,14 +114,12 @@ static NSUInteger RCTDeviceFreeMemory() {
     self.frameBuffer[@(self.currentFrameIndex)] = self.currentFrame;
     dispatch_semaphore_signal(self.lock);
 
-#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     // Calculate max buffer size
     [self calculateMaxBufferCount];
 
     if ([self paused]) {
       [self start];
     }
-#endif // TODO(macOS ISS#2323203)
 
     [self.layer setNeedsDisplay];
   } else {
@@ -151,11 +146,10 @@ static NSUInteger RCTDeviceFreeMemory() {
   return _frameBuffer;
 }
 
-#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
-- (CADisplayLink *)displayLink
+- (RCTPlatformDisplayLink *)displayLink // TODO(macOS ISS#2323203)
 {
   if (!_displayLink) {
-    _displayLink = [CADisplayLink displayLinkWithTarget:[RCTWeakProxy weakProxyWithTarget:self] selector:@selector(displayDidRefresh:)];
+    _displayLink = [RCTPlatformDisplayLink displayLinkWithTarget:[RCTWeakProxy weakProxyWithTarget:self] selector:@selector(displayDidRefresh:)]; // TODO(macOS ISS#2323203)
     NSString *runLoopMode = [NSProcessInfo processInfo].activeProcessorCount > 1 ? NSRunLoopCommonModes : NSDefaultRunLoopMode;
     [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:runLoopMode];
   }
@@ -179,9 +173,9 @@ static NSUInteger RCTDeviceFreeMemory() {
   return self.displayLink.isPaused;
 }
 
-- (void)displayDidRefresh:(CADisplayLink *)displayLink
+- (void)displayDidRefresh:(RCTPlatformDisplayLink *)displayLink // TODO(macOS ISS#2323203)
 {
-#if TARGET_OS_UIKITFORMAC
+#if TARGET_OS_UIKITFORMAC || TARGET_OS_OSX // TODO(macOS ISS#2323203)
   // TODO: `displayLink.frameInterval` is not available on UIKitForMac
   NSTimeInterval duration = displayLink.duration;
 #else
@@ -276,7 +270,8 @@ static NSUInteger RCTDeviceFreeMemory() {
 {
   if (_currentFrame) {
     layer.contentsScale = self.animatedImageScale;
-    layer.contents = (__bridge id)_currentFrame.CGImage;
+    layer.contents = (__bridge id)UIImageGetCGImageRef(_currentFrame); // TODO(macOS ISS#2323203)
+
   }
 }
 
@@ -284,7 +279,8 @@ static NSUInteger RCTDeviceFreeMemory() {
 
 - (void)calculateMaxBufferCount
 {
-  NSUInteger bytes = CGImageGetBytesPerRow(self.currentFrame.CGImage) * CGImageGetHeight(self.currentFrame.CGImage);
+  CGImageRef imageRef = UIImageGetCGImageRef(self.currentFrame); // TODO(macOS ISS#2323203)
+  NSUInteger bytes = CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef); // TODO(macOS ISS#2323203)
   if (bytes == 0) bytes = 1024;
   
   NSUInteger max = 0;
@@ -313,7 +309,9 @@ static NSUInteger RCTDeviceFreeMemory() {
   // Removes the display link from all run loop modes.
   [_displayLink invalidate];
   _displayLink = nil;
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+#endif // TODO(macOS ISS#2323203)
 }
 
 - (void)didReceiveMemoryWarning:(NSNotification *)notification
@@ -332,6 +330,5 @@ static NSUInteger RCTDeviceFreeMemory() {
     dispatch_semaphore_signal(self.lock);
   }];
 }
-#endif // TODO(macOS ISS#2323203)
 
 @end

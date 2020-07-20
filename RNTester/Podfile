@@ -51,7 +51,7 @@ def pods()
   project 'RNTesterPods.xcodeproj'
 
   # Enable TurboModule
-  use_react_native!(path: "..")
+  use_react_native!(path: "..", turbo_modules_enabled: false)
   pod 'ReactCommon/turbomodule/samples', :path => '../ReactCommon'
 
   # Additional Pods which aren't included in the default Podfile

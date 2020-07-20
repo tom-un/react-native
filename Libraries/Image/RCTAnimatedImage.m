@@ -48,7 +48,8 @@
       return nil;
     }
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
-    self = [image copy];
+    CGImageRef imageRef = UIImageGetCGImageRef(image); // TODO(macOS ISS#2323203)
+    self = [super initWithCGImage:imageRef size:CGSizeMake(CGImageGetWidth(imageRef), CGImageGetHeight(imageRef))];
 #else // ]TODO(macOS ISS#2323203)
     self = [super initWithCGImage:image.CGImage scale:MAX(scale, 1) orientation:image.imageOrientation];
 
