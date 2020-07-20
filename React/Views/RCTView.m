@@ -9,7 +9,7 @@
 
 #import "RCTAutoInsetsProtocol.h"
 #import "RCTBorderDrawing.h"
-#import "RCTComponentEvent.h" // TODO(OSS Candidate ISS#2710739)
+#import "RCTFocusChangeEvent.h" // TODO(OSS Candidate ISS#2710739)
 #import "RCTConvert.h"
 #import "RCTLog.h"
 #import "RCTRootContentView.h" // TODO(macOS ISS#2323203)
@@ -722,10 +722,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
   }
 
   // If we've gained focus, notify listeners
-  RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"focus"
-                                                             viewTag:self.reactTag
-                                                                body:@{}];
-  [_eventDispatcher sendEvent:event];
+  [_eventDispatcher sendEvent:[RCTFocusChangeEvent focusEventWithReactTag:self.reactTag]];
 
   return YES;
 }
@@ -737,10 +734,7 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
   }
 
   // If we've lost focus, notify listeners
-  RCTComponentEvent *event = [[RCTComponentEvent alloc] initWithName:@"blur"
-                                                             viewTag:self.reactTag
-                                                                body:@{}];
-  [_eventDispatcher sendEvent:event];
+  [_eventDispatcher sendEvent:[RCTFocusChangeEvent blurEventWithReactTag:self.reactTag]];
 
   return YES;
 }

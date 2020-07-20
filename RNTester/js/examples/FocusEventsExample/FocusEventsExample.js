@@ -165,6 +165,23 @@ class FocusEventExample extends React.Component<{}, State> {
                 onFocus={() => {
                   this.setState(prevState => ({
                     eventStream:
+                      prevState.eventStream + '\nDescendent Text Focus',
+                  }));
+                }}
+                onBlur={() => {
+                  this.setState(prevState => ({
+                    eventStream:
+                      prevState.eventStream + '\nDescendent Text Blur',
+                  }));
+                }}>
+                <View>
+                  <Text selectable={true}>Selectable text</Text>
+                </View>
+              </View>
+              <View
+                onFocus={() => {
+                  this.setState(prevState => ({
+                    eventStream:
                       prevState.eventStream + '\nNested View Parent Focus',
                   }));
                 }}

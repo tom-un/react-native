@@ -104,12 +104,12 @@ type ButtonProps = $ReadOnly<{|
 
   // [TODO(OSS Candidate ISS#2710739)
   /**
-   * Handler to be called the button receive key focus
+   * Handler to be called when the button receives key focus
    */
   onBlur?: ?(e: BlurEvent) => void,
 
   /**
-   * Handler to be called the button looses key focus
+   * Handler to be called when the button loses key focus
    */
   onFocus?: ?(e: FocusEvent) => void,
   // ]TODO(OSS Candidate ISS#2710739)
