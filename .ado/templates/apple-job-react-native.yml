@@ -15,10 +15,13 @@ steps:
     displayName: 'Clean DerivedData'
 
   # Install the required components specified in the Brewfile file.
+  - script: 'brew update'
+    displayName: 'brew update'
+
   - script: 'brew bundle'
     displayName: 'brew bundle'
 
-  - script: brew link node@10 --overwrite --force
+  - script: brew link node@12 --overwrite --force
 
   # Task Group: XCode select proper version
   - template: apple-xcode-select.yml
