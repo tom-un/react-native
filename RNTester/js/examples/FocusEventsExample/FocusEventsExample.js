@@ -13,15 +13,17 @@
 var React = require('react');
 var ReactNative = require('react-native');
 import {Platform} from 'react-native';
-var {Button, StyleSheet, Text, View, TextInput} = ReactNative;
+var {Image, Button, StyleSheet, Text, View, TextInput} = ReactNative;
 
 type State = {
   eventStream: string,
+  showImage: boolean,
 };
 
 class FocusEventExample extends React.Component<{}, State> {
   state: State = {
     eventStream: '',
+    showImage: false,
   };
 
   render() {
@@ -32,6 +34,40 @@ class FocusEventExample extends React.Component<{}, State> {
           can be acquired by manually focusing components
           {Platform.OS === 'macos' ? ' or using tab-based nav' : ''}
         </Text>
+        <View>
+          <Text/>
+          <View>
+            <Text selectable={true}
+                        onFocus={() => {
+                          this.setState(prevState => ({
+                            showImage: true,
+                          }));
+                        }}
+            
+            >I am a run of selectable text.</Text>
+            <Text/>
+            { this.state.showImage ? (
+            <Image
+              acceptsKeyboardFocus={true}
+              enableFocusRing={true}
+              source={require('../../assets/uie_thumb_normal.png')}
+              style={{position: 'absolute', alignSelf:'flex-end'}}
+              />
+            ) : null }
+            <Text/>
+            <Text selectable={true}
+                        onFocus={() => {
+                          this.setState(prevState => ({
+                            showImage: false,
+                          }));
+                        }}
+            
+            >I am another run of selectable text.</Text>
+
+
+          </View>
+          <Text/>
+        </View>
         <View>
           <TextInput
             onFocus={() => {
