@@ -76,7 +76,7 @@
   // associated NSLayoutManager dealloc later in an autorelease pool.
   // Manually removing the layout managers from _textStorage prior to release
   // works around this issue in AppKit.
-  NSArray<NSLayoutManager *> *managers = [_textStorage layoutManagers];
+  NSArray<NSLayoutManager *> *managers = [[_textStorage layoutManagers] copy];
   for (NSLayoutManager *manager in managers) {
     [_textStorage removeLayoutManager:manager];
   }
