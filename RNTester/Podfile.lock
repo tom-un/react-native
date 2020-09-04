@@ -477,45 +477,34 @@ SPEC CHECKSUMS:
   CocoaAsyncSocket: eafaa68a7e0ec99ead0a7b35015e0bf25d2c8987
   CocoaLibEvent: 2fab71b8bd46dd33ddb959f7928ec5909f838e3f
   DoubleConversion: a1bc12a74baa397a2609e0f10e19b8062d864053
-  FBLazyVector: 608bcd1aa7ed0e8bb2a18ddca41fae8c2d9b2f56
-  FBReactNativeSpec: 0e211f93289c3312ddb5ffe7c79e040b7f4459b5
-  Flipper: 10b225e352595f521be0e5badddd90e241336e89
-  Flipper-DoubleConversion: 38631e41ef4f9b12861c67d17cb5518d06badc41
-  Flipper-Folly: c12092ea368353b58e992843a990a3225d4533c3
-  Flipper-Glog: 1dfd6abf1e922806c52ceb8701a3599a79a200a6
-  Flipper-PeerTalk: 116d8f857dc6ef55c7a5a75ea3ceaafe878aadc9
-  Flipper-RSocket: 64e7431a55835eb953b0bf984ef3b90ae9fdddd7
-  FlipperKit: 88b7f0d0cf907ddc2137b85eeb7f3d4d8d9395c8
+  FBLazyVector: 5b6d8c9cfd8538e30e1e2269526196ffe96d37ef
+  FBReactNativeSpec: c48b4d3b293cd0b82c582d2405acd6a1b07d3451
+  Folly: feff29ba9d0b7c2e4f793a94942831d6cc5bbad7
   glog: b3f6d74f3e2d33396addc0ee724d2b2b79fc3e00
-  hermes: e6c81c75290bb87d1d62d594c269fba09b84e216
-  libevent: c2d56c8554ac18101d9c5f4c66ef762798209682
-  OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
-  RCT-Folly: 2a6bc6b1d37b83324c2c36358a32c7d445f3a723
-  RCTRequired: 1a4a6deb04ef543cb6cffb21ee3a179e6b3e6865
-  RCTTypeSafety: 2532ad546e8347efd5f373f690263f51dfa94423
-  React: 47b69af9919235656cc25e2e86debf6839636214
-  React-ART: 08c29f830aadd2b27674c31f247f59b494d50a8c
-  React-Core: bfd749140a498e345fe189cfdd64eafa384e989b
-  React-CoreModules: e163e0889963feb30d6e92f734b12b377a227c40
-  React-cxxreact: efe809b9f613cfb093e01f12b9cf901dd36d10cd
-  React-jsi: 7a7d5760223cd78ceebedb4112fb4dc9b1e95d8e
-  React-jsiexecutor: 95b7e2383f25243ef1e36555a6f75bce5c857949
-  React-jsinspector: a3c898224e45efb69304a79e8c6d560e9067e7fc
-  React-RCTActionSheet: d57eda7986cf2b137b0eae25dc8cb945d4299a27
-  React-RCTAnimation: 3d0715141579f0a8d1a8875d9f4a9eaa651e0daa
-  React-RCTBlob: 5821a16d00783cc370429d8992adb0102b9a227c
-  React-RCTImage: 7987d067ac83e4e4978764738bd04d6de4c52cf6
-  React-RCTLinking: 40694502840d758d5795fb92db7e3298de184c87
-  React-RCTNetwork: 85f1f77bf10927afe802816b398a34b0debca1b2
-  React-RCTPushNotification: 7f6f5f6ffeaad730be18102aa9f2ecba4ffd6611
-  React-RCTSettings: 7a45d20ca5cb14c4edde6613cea95ebb98a9f586
-  React-RCTTest: d22d238152ab61d1b5a1a3aa602339e3a657efea
-  React-RCTText: 1c68c9fccbeeea190df0a1e56727bbe6e4db0a48
-  React-RCTVibration: a77d5b69d1542199721085d3c1828c269ad4250c
-  ReactCommon: c942d0813e1921710d25a939cbb036211d77cfc2
-  Yoga: eb6965db3660dae59600f6fbaa0cc0e6fb04b87b
-  YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
+  RCTRequired: 622690f1bcbe26868f52961e719d860f3004b6b6
+  RCTTypeSafety: 3ea632ebbb03638caff9e84f6f6abb7e936a3e5b
+  React: 8d5eec1276f11a81b19d8abb6443dcc39a110300
+  React-ART: c013918bd3d8c62b8ad582031fd9a760c6df53d8
+  React-Core: bd781c39a56a76af11a6f9657c5aaff3bbff46ff
+  React-CoreModules: de492a564074fb323f5a7577cc8fad169f6b35a1
+  React-cxxreact: 9797c881683a4d7cb3755a533942745f0244fc0b
+  React-jsi: 30ffe0e2af47cf815eb7ee61084ea891cbf48cbb
+  React-jsiexecutor: f1080a4b5aa627a393f8b9e2b545f98e32b1e8ed
+  React-jsinspector: 5e2444bdfaf148c9f14b9ed68dd607cd12a3c201
+  React-RCTActionSheet: 96944bdeca027606bdb9c798b61d82ee34c12105
+  React-RCTAnimation: 14a267ca1675e8aa46038e54cedaa568089ca72f
+  React-RCTBlob: 8df5ae4defda691fa058b42b1d2bc253ceb8bcd5
+  React-RCTImage: 51693ef8b6539c75a39046569894c46936f9e46f
+  React-RCTLinking: 3925342df1e9de2c4b8674cca39de0e7a42d0ccf
+  React-RCTNetwork: de7a645b95657b88fd891e0b59298b7bf1a50ad9
+  React-RCTPushNotification: 61aff4a48cd87145c170a173426c1bec96b288d3
+  React-RCTSettings: 5c4b741b59a4547f8f002a3c17bc9b817298c8e0
+  React-RCTTest: 5afe9d3c7ab66dfd2ca5145f9189c0a85f2fb34b
+  React-RCTText: 09b6d9d7363064d23380f50fc01af3ab75131cf7
+  React-RCTVibration: 8135beb48e3065fbcbe6417b9a6bbbc884c02a78
+  ReactCommon: a377fdc9faecc5c9408bcd07ce997703c0ce22ff
+  Yoga: 7d784f976888661a2cea9333ab06125b1133e435
 
-PODFILE CHECKSUM: 0e2c0cafaedd257c0e62d6125ab016426ed6da18
+PODFILE CHECKSUM: 8a50297c26ad9d948d1614b33e20d755094cb377
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.1
