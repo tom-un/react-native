@@ -1145,20 +1145,43 @@ RCT_ENUM_CONVERTER(RCTAnimationType, (@{
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
 + (NSString*)accessibilityRoleFromTrait:(NSString*)trait
 {
-  // a subset of iOS accessibilityTraits map to macOS accessiblityRoles:
-  if ([trait isEqualToString:@"button"]) {
-    return NSAccessibilityButtonRole;
-  } else if ([trait isEqualToString:@"text"]) {
-    return NSAccessibilityStaticTextRole;
-  } else if ([trait isEqualToString:@"link"]) {
-    return NSAccessibilityLinkRole;
-  } else if ([trait isEqualToString:@"image"]) {
-    return NSAccessibilityImageRole;
-    // a set of RN accessibilityTraits are macOS specific accessiblity roles:
-  }	else if ([trait isEqualToString:@"group"]) {
-    return NSAccessibilityGroupRole;
-  } else if ([trait isEqualToString:@"list"]) {
-    return NSAccessibilityListRole;
+  NSDictionary<NSString *, NSString *> *traitOrRoleToAccessibilityRole = @{
+    // from https://reactnative.dev/docs/accessibility#accessibilityrole
+    @"adjustable": NSAccessibilitySliderRole,
+    @"alert": NSAccessibilityUnknownRole, // no exact match on macOS
+    @"button": NSAccessibilityButtonRole, // also a legacy iOS accessibilityTraits
+    @"checkbox": NSAccessibilityCheckBoxRole,
+    @"combobox": NSAccessibilityComboBoxRole,
+    @"header": NSAccessibilityUnknownRole, // no exact match on macOS
+    @"image": NSAccessibilityImageRole, // also a legacy iOS accessibilityTraits
+    @"imagebutton": NSAccessibilityButtonRole, // no exact match on macOS
+    @"keyboardkey": NSAccessibilityButtonRole, // no exact match on macOS
+    @"link": NSAccessibilityLinkRole, // also a legacy iOS accessibilityTraits
+    @"menu": NSAccessibilityMenuRole,
+    @"menubar": NSAccessibilityMenuBarRole,
+    @"menuitem": NSAccessibilityMenuBarItemRole,
+    @"none": NSAccessibilityUnknownRole,
+    @"progressbar": NSAccessibilityProgressIndicatorRole,
+    @"radio": NSAccessibilityRadioButtonRole,
+    @"radiogroup": NSAccessibilityRadioGroupRole,
+    @"scrollbar": NSAccessibilityScrollBarRole,
+    @"search": NSAccessibilityUnknownRole, // no exact match on macOS
+    @"spinbutton": NSAccessibilityIncrementorRole,
+    @"summary": NSAccessibilityUnknownRole, // no exact match on macOS
+    @"switch": NSAccessibilityCheckBoxRole, // no exact match on macOS
+    @"tab": NSAccessibilityButtonRole, // no exact match on macOS
+    @"tablist": NSAccessibilityTabGroupRole,
+    @"text": NSAccessibilityStaticTextRole, // also a legacy iOS accessibilityTraits
+    @"timer": NSAccessibilityUnknownRole, // no exact match on macOS
+    @"toolbar": NSAccessibilityToolbarRole,
+    // Roles/traits that are macOS specific and are used by some of the core components (Lists):
+    @"group": NSAccessibilityGroupRole,
+    @"list": NSAccessibilityListRole,
+  };
+
+  NSString *role = [traitOrRoleToAccessibilityRole valueForKey:trait];
+  if (role) {
+    return role;
   }
   return NSAccessibilityUnknownRole;
 }
