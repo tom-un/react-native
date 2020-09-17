@@ -16,6 +16,9 @@
 #import "RCTUtils.h"
 #import "UIView+React.h"
 #import "RCTI18nUtil.h"
+#if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
+#import "RCTTextView.h"
+#endif // ]TODO(macOS ISS#2323203)
 
 #if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
 UIAccessibilityTraits const SwitchAccessibilityTrait = 0x20000000000001;
@@ -92,7 +95,18 @@ static NSString *RCTRecursiveAccessibilityLabel(RCTUIView *view) // TODO(macOS I
 {
   NSMutableString *str = [NSMutableString stringWithString:@""];
   for (RCTUIView *subview in view.subviews) { // TODO(macOS ISS#3536887)
+#if !TARGET_OS_OSX // TODO(macOS ISS#2323203)
     NSString *label = subview.accessibilityLabel;
+#else // [TODO(macOS ISS#2323203)
+    NSString *label;
+    if ([subview isKindOfClass:[RCTTextView class]]) {
+      // on macOS VoiceOver a text element will always have its accessibilityValue read, but will only read it's accessibilityLabel if it's value is set.
+      // the macOS RCTTextView accessibilityValue will return its accessibilityLabel if set otherwise return its text.
+      label = subview.accessibilityValue;
+    } else {
+      label = subview.accessibilityLabel;
+    }
+#endif // ]TODO(macOS ISS#2323203)
     if (!label) {
       label = RCTRecursiveAccessibilityLabel(subview);
     }
@@ -188,6 +202,11 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
   if (label) {
     return label;
   }
+#if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
+  // calling super.accessibilityLabel above on macOS causes the return value of this accessor to be ignored by VoiceOver.
+  // Calling the super's setAccessibilityLabel with nil ensures that the return value of this accessor is used by VoiceOver.
+  [super setAccessibilityLabel:nil];
+#endif // ]TODO(macOS ISS#2323203)
   return RCTRecursiveAccessibilityLabel(self);
 }
 
