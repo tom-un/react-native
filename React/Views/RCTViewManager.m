@@ -256,7 +256,7 @@ RCT_CUSTOM_VIEW_PROPERTY(accessibilityState, NSDictionary, RCTView)
 #else // [TODO(macOS ISS#2323203)
   for (NSString *s in state) {
     id val = [state objectForKey:s];
-    if (!val) {
+    if (val == nil) {
       continue;
     }
     newState[s] = val;
