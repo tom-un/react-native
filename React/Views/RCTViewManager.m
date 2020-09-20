@@ -48,7 +48,8 @@ RCT_MULTI_ENUM_CONVERTER(UIAccessibilityTraits, (@{
   @"allowsDirectInteraction": @(UIAccessibilityTraitAllowsDirectInteraction),
   @"pageTurn": @(UIAccessibilityTraitCausesPageTurn),
   // [TODO(macOS ISS#2323203):
-  // a set of RN accessibilityTraits are macOS specific accessiblity roles and map to nothing on iOS:
+  // a set of RN accessibilityTraits are macOS specific accessibility roles and map to nothing on iOS:
+  @"disclosure": @(UIAccessibilityTraitNone),
   @"group": @(UIAccessibilityTraitNone),
   @"list": @(UIAccessibilityTraitNone),
   // ]TODO(macOS ISS#2323203)

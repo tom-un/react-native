@@ -1168,7 +1168,7 @@ RCT_ENUM_CONVERTER(RCTAnimationType, (@{
       @"radio": NSAccessibilityRadioButtonRole,
       @"radiogroup": NSAccessibilityRadioGroupRole,
       @"scrollbar": NSAccessibilityScrollBarRole,
-      @"search": NSAccessibilityStaticTextRole, // no exact match on macOS
+      @"search": NSAccessibilityTextFieldRole, // no exact match on macOS
       @"spinbutton": NSAccessibilityIncrementorRole,
       @"summary": NSAccessibilityStaticTextRole, // no exact match on macOS
       @"switch": NSAccessibilityCheckBoxRole, // no exact match on macOS
@@ -1178,6 +1178,7 @@ RCT_ENUM_CONVERTER(RCTAnimationType, (@{
       @"timer": NSAccessibilityStaticTextRole, // no exact match on macOS
       @"toolbar": NSAccessibilityToolbarRole,
       // Roles/traits that are macOS specific and are used by some of the core components (Lists):
+      @"disclosure": NSAccessibilityDisclosureTriangleRole,
       @"group": NSAccessibilityGroupRole,
       @"list": NSAccessibilityListRole,
     };

@@ -351,7 +351,10 @@ RCT_NOT_IMPLEMENTED(- (instancetype)initWithCoder:unused)
 #else // [TODO(macOS ISS#2323203)
 - (id)accessibilityValue {
   id accessibilityValue = nil;
-  if ([self accessibilityRole] == NSAccessibilityCheckBoxRole) {
+  NSAccessibilityRole role = [self accessibilityRole];
+  if (role == NSAccessibilityCheckBoxRole ||
+      role == NSAccessibilityRadioButtonRole ||
+      role == NSAccessibilityDisclosureTriangleRole) {
     for (NSString *state in [self accessibilityState]) {
       id val = [self accessibilityState][state];
       if (val != nil) {
