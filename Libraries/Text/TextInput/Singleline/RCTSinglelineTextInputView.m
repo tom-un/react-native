@@ -17,6 +17,7 @@
 @implementation RCTSinglelineTextInputView
 {
   RCTUITextField *_backedTextInputView;
+  BOOL _useSecureTextField; // TODO(macOS ISS#2323203)
 }
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge
@@ -58,16 +59,19 @@
 }
 
 - (void)setUseSecureTextField:(BOOL)useSecureTextField {
-  RCTUITextField *previousTextField = _backedTextInputView;
-  if (useSecureTextField) {
-    _backedTextInputView = [[RCTUISecureTextField alloc] initWithFrame:self.bounds];
-  } else {
-    _backedTextInputView = [[RCTUITextField alloc] initWithFrame:self.bounds];
+  if (_useSecureTextField != useSecureTextField) {
+    _useSecureTextField = useSecureTextField;
+    RCTUITextField *previousTextField = _backedTextInputView;
+    if (useSecureTextField) {
+      _backedTextInputView = [[RCTUISecureTextField alloc] initWithFrame:self.bounds];
+    } else {
+      _backedTextInputView = [[RCTUITextField alloc] initWithFrame:self.bounds];
+    }
+    _backedTextInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _backedTextInputView.textInputDelegate = self;
+    _backedTextInputView.text = previousTextField.text;
+    [self replaceSubview:previousTextField with:_backedTextInputView];
   }
-  _backedTextInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-  _backedTextInputView.textInputDelegate = self;
-  _backedTextInputView.text = previousTextField.text;
-  [self replaceSubview:previousTextField with:_backedTextInputView];
 }
 #endif // ]TODO(macOS ISS#2323203)
 
