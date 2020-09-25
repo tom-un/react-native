@@ -7,8 +7,6 @@
 
 // TODO(macOS ISS#2323203)
 
-#define RCT_SUBCLASS_SECURETEXTFIELD 1
+#define RCT_SUBCLASS_SEARCHFIELD 1
 
-#include <React/RCTUITextField.h>
-
-#undef RCT_SUBCLASS_SECURETEXTFIELD
+#include "../RCTUITextField.m"

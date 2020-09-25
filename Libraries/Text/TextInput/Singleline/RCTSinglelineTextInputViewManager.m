@@ -30,5 +30,10 @@ RCT_EXPORT_MODULE()
 }
 
 RCT_REMAP_OSX_VIEW_PROPERTY(secureTextEntry, useSecureTextField, BOOL) // TODO(macOS ISS#2323203)
+RCT_CUSTOM_VIEW_PROPERTY(clearButtonMode, NSString, RCTSinglelineTextInputView)
+{
+  [view setUseSearchField:![json isEqualToString:@"never"]];
+}
+// TODO(macOS ISS#2323203)
 
 @end

@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RCTSinglelineTextInputView : RCTBaseTextInputView
 
+- (void)setUseSearchField:(NSInteger)useSearchField;
+
 @end
 
 NS_ASSUME_NONNULL_END

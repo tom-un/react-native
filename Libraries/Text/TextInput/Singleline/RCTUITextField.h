@@ -18,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #if RCT_SUBCLASS_SECURETEXTFIELD
 @interface RCTUISecureTextField : NSSecureTextField <RCTBackedTextInputViewProtocol>
+#elif RCT_SUBCLASS_SEARCHFIELD
+@interface RCTUISearchField : NSSearchField <RCTBackedTextInputViewProtocol>
 #else
 @interface RCTUITextField : UITextField <RCTBackedTextInputViewProtocol>
 #endif

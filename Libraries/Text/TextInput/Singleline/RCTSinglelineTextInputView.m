@@ -12,12 +12,14 @@
 #include <React/RCTUITextField.h>
 #if TARGET_OS_OSX // [TODO(macOS ISS#2323203)
 #include <React/RCTUISecureTextField.h>
+#include <React/RCTUISearchField.h>
 #endif // ]TODO(macOS ISS#2323203)
 
 @implementation RCTSinglelineTextInputView
 {
   RCTUITextField *_backedTextInputView;
   BOOL _useSecureTextField; // TODO(macOS ISS#2323203)
+  NSInteger _useSearchField; // TODO(macOS ISS#2323203)
 }
 
 - (instancetype)initWithBridge:(RCTBridge *)bridge
@@ -73,6 +75,23 @@
     [self replaceSubview:previousTextField with:_backedTextInputView];
   }
 }
+
+- (void)setUseSearchField:(NSInteger)useSearchField {
+  if (_useSearchField != useSearchField) {
+    _useSearchField = useSearchField;
+    RCTUITextField *previousTextField = _backedTextInputView;
+    if (useSearchField) {
+      _backedTextInputView = [[RCTUISearchField alloc] initWithFrame:self.bounds];
+    } else {
+      _backedTextInputView = [[RCTUITextField alloc] initWithFrame:self.bounds];
+    }
+    _backedTextInputView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    _backedTextInputView.textInputDelegate = self;
+    _backedTextInputView.text = previousTextField.text;
+    [self replaceSubview:previousTextField with:_backedTextInputView];
+  }
+}
+
 #endif // ]TODO(macOS ISS#2323203)
 
 @end

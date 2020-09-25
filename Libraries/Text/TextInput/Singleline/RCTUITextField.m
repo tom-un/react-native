@@ -20,6 +20,9 @@
 #if RCT_SUBCLASS_SECURETEXTFIELD
 #define RCTUITextFieldCell RCTUISecureTextFieldCell
 @interface RCTUISecureTextFieldCell : NSSecureTextFieldCell
+#elif RCT_SUBCLASS_SEARCHFIELD
+#define RCTUITextFieldCell RCTUISearchFieldCell
+@interface RCTUISearchFieldCell : NSSearchFieldCell
 #else
 @interface RCTUITextFieldCell : NSTextFieldCell
 #endif
@@ -78,11 +81,24 @@
   return fieldEditor;
 }
 
+#if RCT_SUBCLASS_SEARCHFIELD
+- (NSRect)searchTextRectForBounds:(NSRect)rect {
+  return rect;
+}
+
+- (NSRect)searchButtonRectForBounds:(NSRect)rect {
+  return NSZeroRect;
+}
+
+#endif
+
 @end
 #endif // ]TODO(macOS ISS#2323203)
 
 #ifdef RCT_SUBCLASS_SECURETEXTFIELD
 @implementation RCTUISecureTextField {
+#elif RCT_SUBCLASS_SEARCHFIELD
+@implementation RCTUISearchField {
 #else
 @implementation RCTUITextField {
 #endif
